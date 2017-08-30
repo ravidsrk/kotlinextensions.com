@@ -1357,3 +1357,201 @@ fun Fragment.rate() = activity.rate()
 ```kotlin
 fun SupportFragment.rate() = activity.rate()
 ```
+
+
+```kotlin
+fun runOnUiThread(action: () -> Unit){
+    if (ContextHandler.mainThread == Thread.currentThread()) action() else ContextHandler.handler.post { action() }
+}
+```
+
+
+```kotlin
+fun runDelayed(delay: Long, timeUnit: TimeUnit = MILLISECONDS, action: () -> Unit) {
+    Handler().postDelayed(action, timeUnit.toMillis(delay))
+}
+```
+
+
+```kotlin
+fun runDelayedOnUiThread(delay: Long, timeUnit: TimeUnit = MILLISECONDS, action: () -> Unit) {
+    ContextHandler.handler.postDelayed(action, timeUnit.toMillis(delay))
+}
+```
+
+
+```kotlin
+private object ContextHandler {
+    val handler = Handler(Looper.getMainLooper())
+    val mainThread = Looper.getMainLooper().thread
+}
+```
+
+
+```kotlin
+inline fun <reified T : View> View.find(@IdRes id: Int) = findViewById(id) as T
+```
+
+
+```kotlin
+inline fun <reified T : View> View.findOptional(@IdRes id: Int) = findViewById(id) as? T
+```
+
+
+```kotlin
+fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG) = snack(message, length) {}
+```
+
+
+```kotlin
+fun View.snack(@StringRes messageRes: Int, length: Int = Snackbar.LENGTH_LONG) = snack(messageRes, length) {}
+```
+
+
+```kotlin
+inline fun View.snack(message: String, @Duration length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
+    val snack = Snackbar.make(this, message, length)
+    snack.f()
+    snack.show()
+}
+```
+
+
+```kotlin
+inline fun View.snack(@StringRes messageRes: Int, @Duration length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
+    val snack = Snackbar.make(this, messageRes, length)
+    snack.f()
+    snack.show()
+}
+```
+
+
+```kotlin
+fun Snackbar.action(text: String, @ColorRes color: Int? = null, listener: (View) -> Unit) {
+    setAction(text, listener)
+    color?.let { setActionTextColor(color) }
+}
+```
+
+
+```kotlin
+tailrec fun <T : View> View.findParent(parentType: Class<T>): T {
+    return if (parent.javaClass == parentType) parent as T else (parent as View).findParent(parentType)
+}
+```
+
+
+```kotlin
+/**
+ * https://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
+ **/
+fun View.hideSoftKeyboard(): Boolean {
+    try {
+        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        return inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+    } catch (ignored: RuntimeException) { }
+
+    return false
+}
+```
+
+
+```kotlin
+fun Activity.getContentView(): ViewGroup {
+    return this.findViewById(android.R.id.content) as ViewGroup
+}
+```
+
+
+```kotlin
+fun TextView.setColorOfSubstring(substring: String, color: Int) {
+    try {
+        val spannable = android.text.SpannableString(text)
+        val start = text.indexOf(substring)
+        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(context, color)), start, start + substring.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        text = spannable
+    } catch (e: Exception) {
+        Log.d("ViewExtensions",  "exception in setColorOfSubstring, text=$text, substring=$substring", e)
+    }
+}
+```
+
+
+```kotlin
+fun ViewGroup.getViewsByTag(tag: String): ArrayList<View> {
+    val views = ArrayList<View>()
+    val childCount = childCount
+    for (i in 0..childCount - 1) {
+        val child = getChildAt(i)
+        if (child is ViewGroup) {
+            views.addAll(child.getViewsByTag(tag))
+        }
+
+        val tagObj = child.tag
+        if (tagObj != null && tagObj == tag) {
+            views.add(child)
+        }
+
+    }
+    return views
+}
+```
+
+
+```kotlin
+fun ViewGroup.removeViewsByTag(tag: String) {
+    for (i in 0..childCount - 1) {
+        val child = getChildAt(i)
+        if (child is ViewGroup) {
+            child.removeViewsByTag(tag)
+        }
+
+        if (child.tag == tag) {
+            removeView(child)
+        }
+    }
+}
+```
+
+
+```kotlin
+fun TextView.font(font: String) {
+    typeface = Typeface.createFromAsset(context.assets, "fonts/$font.ttf")
+}
+```
+
+
+```kotlin
+fun View.visible(): View {
+    if (visibility != View.VISIBLE) visibility = View.VISIBLE
+    return this
+}
+```
+
+
+```kotlin
+fun View.isVisible(): Boolean {
+    return visibility == View.VISIBLE
+}
+```
+
+
+```kotlin
+fun View.invisible() {
+    if (visibility != View.INVISIBLE) visibility = View.INVISIBLE
+}
+```
+
+
+```kotlin
+fun View.gone() {
+    if (visibility != View.GONE) visibility = View.GONE
+}
+```
+
+
+```kotlin
+fun ViewGroup.inflate(layoutRes: Int): View {
+    return LayoutInflater.from(context).inflate(layoutRes, this, false)
+}
+```
