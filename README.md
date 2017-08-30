@@ -982,9 +982,11 @@ fun String.isNumeric(): Boolean {
 }
 ```
 
-```
+
+```kotlin
 fun String.equalsIgnoreCase(other: String) = this.toLowerCase().contentEquals(other.toLowerCase())
 ```
+
 
 ```kotlin
 private fun encrypt(string: String?, type: String): String {
@@ -1015,5 +1017,541 @@ private fun bytes2Hex(bts: ByteArray): String {
         des += tmp
     }
     return des
+}
+```
+
+
+```kotlin
+inline val Context.displayWidth: Int
+    get() = resources.displayMetrics.widthPixels
+```
+
+
+```kotlin
+inline val Context.displayHeight: Int
+    get() = resources.displayMetrics.heightPixels
+```
+
+
+```kotlin
+inline val Context.displayMetricks: DisplayMetrics
+    get() = resources.displayMetrics
+```
+
+
+```kotlin
+inline val Context.inflater: LayoutInflater
+    get() = LayoutInflater.from(this)
+```
+
+
+```kotlin
+inline fun <reified T : Any> Context.intent() = Intent(this, T::class.java)
+```
+
+
+```kotlin
+inline fun <reified T : Any> Context.intent(body: Intent.() -> Unit): Intent {
+    val intent = Intent(this, T::class.java)
+    intent.body()
+    return intent
+}
+```
+
+
+```kotlin
+inline fun <reified T : Activity> Context?.startActivity() = this?.startActivity(Intent(this, T::class.java))
+```
+
+
+```kotlin
+inline fun <reified T : Service> Context?.startService() = this?.startService(Intent(this, T::class.java))
+```
+
+
+```kotlin
+inline fun <reified T : Activity> Context.startActivityWithAnimation(enterResId: Int = 0, exitResId: Int = 0) {
+    val intent = Intent(this, T::class.java)
+    val bundle = ActivityOptionsCompat.makeCustomAnimation(this, enterResId, exitResId).toBundle()
+    ContextCompat.startActivity(this, intent, bundle)
+}
+```
+
+
+```kotlin
+inline fun <reified T : Activity> Context.startActivityWithAnimation(enterResId: Int = 0, exitResId: Int = 0, intentBody: Intent.() -> Unit) {
+    val intent = Intent(this, T::class.java)
+    intent.intentBody()
+    val bundle = ActivityOptionsCompat.makeCustomAnimation(this, enterResId, exitResId).toBundle()
+    ContextCompat.startActivity(this, intent, bundle)
+}
+```
+
+
+```kotlin
+fun Context?.toast(text: CharSequence, duration: Int = Toast.LENGTH_LONG) = this?.let { Toast.makeText(it, text, duration).show() }
+```
+
+
+```kotlin
+fun Context?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { Toast.makeText(it, textId, duration).show() }
+```
+
+
+```kotlin
+fun Context.getInteger(@IntegerRes id: Int) = resources.getInteger(id)
+```
+
+
+```kotlin
+fun Context.getBoolean(@BoolRes id: Int) = resources.getBoolean(id)
+```
+
+
+```kotlin
+fun Context.getColor(@ColorRes id: Int) = ContextCompat.getColor(this, id)
+```
+
+
+```kotlin
+fun Context.getDrawable(@DrawableRes id: Int) = ContextCompat.getDrawable(this, id)
+```
+
+
+```kotlin
+fun Context.inflateLayout(@LayoutRes layoutId: Int, parent: ViewGroup? = null, attachToRoot: Boolean = false): View
+        = LayoutInflater.from(this).inflate(layoutId, parent, attachToRoot)
+```
+
+
+```kotlin
+inline val Context.inputManager: InputMethodManager?
+    get() = getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
+```
+
+
+```kotlin
+inline val Context.notificationManager: NotificationManager?
+    get() = getSystemService(NOTIFICATION_SERVICE) as? NotificationManager
+```
+
+
+```kotlin
+inline val Context.keyguardManager: KeyguardManager?
+    get() = getSystemService(KEYGUARD_SERVICE) as? KeyguardManager
+```
+
+
+```kotlin
+inline val Context.telephonyManager: TelephonyManager?
+    get() = getSystemService(TELEPHONY_SERVICE) as? TelephonyManager
+```
+
+
+```kotlin
+inline val Context.devicePolicyManager: DevicePolicyManager?
+    get() = getSystemService(DEVICE_POLICY_SERVICE) as? DevicePolicyManager
+```
+
+
+```kotlin
+inline val Context.connectivityManager: ConnectivityManager?
+    get() = getSystemService(CONNECTIVITY_SERVICE) as? ConnectivityManager
+```
+
+
+```kotlin
+inline val Context.alarmManager: AlarmManager?
+    get() = getSystemService(ALARM_SERVICE) as? AlarmManager
+```
+
+
+```kotlin
+inline val Context.clipboardManager: ClipboardManager?
+    get() = getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager
+```
+
+
+```kotlin
+inline val Context.jobScheduler: JobScheduler?
+    get() = getSystemService(JOB_SCHEDULER_SERVICE) as? JobScheduler
+```
+
+
+```kotlin
+inline fun Context.notification(body: NotificationCompat.Builder.() -> Unit): Notification {
+    val builder = NotificationCompat.Builder(this)
+    builder.body()
+    return builder.build()
+}
+```
+
+
+```kotlin
+fun Context.browse(url: String, newTask: Boolean = false): Boolean {
+    try {
+        val intent = intent(ACTION_VIEW) {
+            data = Uri.parse(url)
+            if (newTask) addFlags(FLAG_ACTIVITY_NEW_TASK)
+        }
+        startActivity(intent)
+        return true
+    } catch (e: Exception) {
+        return false
+    }
+}
+```
+
+
+```kotlin
+fun Context.share(text: String, subject: String = ""): Boolean {
+    val intent = Intent()
+    intent.type = "text/plain"
+    intent.putExtra(EXTRA_SUBJECT, subject)
+    intent.putExtra(EXTRA_TEXT, text)
+    try {
+        startActivity(createChooser(intent, null))
+        return true
+    } catch (e: ActivityNotFoundException) {
+        return false
+    }
+}
+```
+
+
+```kotlin
+fun Context.email(email: String, subject: String = "", text: String = ""): Boolean {
+    val intent = intent(ACTION_SENDTO) {
+        data = Uri.parse("mailto:")
+        putExtra(EXTRA_EMAIL, arrayOf(email))
+        if (subject.isNotBlank()) putExtra(EXTRA_SUBJECT, subject)
+        if (text.isNotBlank()) putExtra(EXTRA_TEXT, text)
+    }
+    if (intent.resolveActivity(packageManager) != null) {
+        startActivity(intent)
+        return true
+    }
+    return false
+}
+```
+
+
+```kotlin
+fun Context.makeCall(number: String): Boolean {
+    try {
+        val intent = Intent(ACTION_CALL, Uri.parse("tel:$number"))
+        startActivity(intent)
+        return true
+    } catch (e: Exception) {
+        return false
+    }
+}
+```
+
+
+```kotlin
+fun Context.sendSms(number: String, text: String = ""): Boolean {
+    try {
+        val intent = intent(ACTION_VIEW, Uri.parse("sms:$number")) {
+            putExtra("sms_body", text)
+        }
+        startActivity(intent)
+        return true
+    } catch (e: Exception) {
+        return false
+    }
+}
+```
+
+
+```kotlin
+fun Context.rate(): Boolean = browse("market://details?id=$packageName") or browse("http://play.google.com/store/apps/details?id=$packageName")
+```
+
+
+```kotlin
+fun Fragment?.toast(text: CharSequence, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(text, duration) }
+```
+
+
+```kotlin
+fun Fragment?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(textId, duration) }
+```
+
+
+```kotlin
+fun SupportFragment?.toast(text: CharSequence, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(text, duration) }
+```
+
+
+```kotlin
+fun SupportFragment?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(textId, duration) }
+```
+
+
+```kotlin
+inline fun Fragment.notification(body: NotificationCompat.Builder.() -> Unit) = activity.notification(body)
+```
+
+
+```kotlin
+inline fun SupportFragment.notification(body: NotificationCompat.Builder.() -> Unit) = activity.notification(body)
+```
+
+
+```kotlin
+fun Fragment.browse(url: String, newTask: Boolean = false) = activity.browse(url, newTask)
+```
+
+
+```kotlin
+fun SupportFragment.browse(url: String, newTask: Boolean = false) = activity.browse(url, newTask)
+```
+
+
+```kotlin
+fun Fragment.share(text: String, subject: String = "") = activity.share(text, subject)
+```
+
+
+```kotlin
+fun SupportFragment.share(text: String, subject: String = "") = activity.share(text, subject)
+```
+
+
+```kotlin
+fun Fragment.email(email: String, subject: String = "", text: String = "") = activity.email(email, subject, text)
+```
+
+
+```kotlin
+fun SupportFragment.email(email: String, subject: String = "", text: String = "") = activity.email(email, subject, text)
+```
+
+
+```kotlin
+fun Fragment.makeCall(number: String) = activity.makeCall(number)
+```
+
+
+```kotlin
+fun SupportFragment.makeCall(number: String) = activity.makeCall(number)
+```
+
+
+```kotlin
+fun Fragment.sendSms(number: String, text: String = "") = activity.sendSms(number, text)
+```
+
+
+```kotlin
+fun SupportFragment.sendSms(number: String, text: String = "") = activity.sendSms(number, text)
+```
+
+
+```kotlin
+fun Fragment.rate() = activity.rate()
+```
+
+
+```kotlin
+fun SupportFragment.rate() = activity.rate()
+```
+
+
+```kotlin
+fun runOnUiThread(action: () -> Unit){
+    if (ContextHandler.mainThread == Thread.currentThread()) action() else ContextHandler.handler.post { action() }
+}
+```
+
+
+```kotlin
+fun runDelayed(delay: Long, timeUnit: TimeUnit = MILLISECONDS, action: () -> Unit) {
+    Handler().postDelayed(action, timeUnit.toMillis(delay))
+}
+```
+
+
+```kotlin
+fun runDelayedOnUiThread(delay: Long, timeUnit: TimeUnit = MILLISECONDS, action: () -> Unit) {
+    ContextHandler.handler.postDelayed(action, timeUnit.toMillis(delay))
+}
+```
+
+
+```kotlin
+private object ContextHandler {
+    val handler = Handler(Looper.getMainLooper())
+    val mainThread = Looper.getMainLooper().thread
+}
+```
+
+
+```kotlin
+inline fun <reified T : View> View.find(@IdRes id: Int) = findViewById(id) as T
+```
+
+
+```kotlin
+inline fun <reified T : View> View.findOptional(@IdRes id: Int) = findViewById(id) as? T
+```
+
+
+```kotlin
+fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG) = snack(message, length) {}
+```
+
+
+```kotlin
+fun View.snack(@StringRes messageRes: Int, length: Int = Snackbar.LENGTH_LONG) = snack(messageRes, length) {}
+```
+
+
+```kotlin
+inline fun View.snack(message: String, @Duration length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
+    val snack = Snackbar.make(this, message, length)
+    snack.f()
+    snack.show()
+}
+```
+
+
+```kotlin
+inline fun View.snack(@StringRes messageRes: Int, @Duration length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
+    val snack = Snackbar.make(this, messageRes, length)
+    snack.f()
+    snack.show()
+}
+```
+
+
+```kotlin
+fun Snackbar.action(text: String, @ColorRes color: Int? = null, listener: (View) -> Unit) {
+    setAction(text, listener)
+    color?.let { setActionTextColor(color) }
+}
+```
+
+
+```kotlin
+tailrec fun <T : View> View.findParent(parentType: Class<T>): T {
+    return if (parent.javaClass == parentType) parent as T else (parent as View).findParent(parentType)
+}
+```
+
+
+```kotlin
+/**
+ * https://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
+ **/
+fun View.hideSoftKeyboard(): Boolean {
+    try {
+        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        return inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+    } catch (ignored: RuntimeException) { }
+
+    return false
+}
+```
+
+
+```kotlin
+fun Activity.getContentView(): ViewGroup {
+    return this.findViewById(android.R.id.content) as ViewGroup
+}
+```
+
+
+```kotlin
+fun TextView.setColorOfSubstring(substring: String, color: Int) {
+    try {
+        val spannable = android.text.SpannableString(text)
+        val start = text.indexOf(substring)
+        spannable.setSpan(ForegroundColorSpan(ContextCompat.getColor(context, color)), start, start + substring.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+        text = spannable
+    } catch (e: Exception) {
+        Log.d("ViewExtensions",  "exception in setColorOfSubstring, text=$text, substring=$substring", e)
+    }
+}
+```
+
+
+```kotlin
+fun ViewGroup.getViewsByTag(tag: String): ArrayList<View> {
+    val views = ArrayList<View>()
+    val childCount = childCount
+    for (i in 0..childCount - 1) {
+        val child = getChildAt(i)
+        if (child is ViewGroup) {
+            views.addAll(child.getViewsByTag(tag))
+        }
+
+        val tagObj = child.tag
+        if (tagObj != null && tagObj == tag) {
+            views.add(child)
+        }
+
+    }
+    return views
+}
+```
+
+
+```kotlin
+fun ViewGroup.removeViewsByTag(tag: String) {
+    for (i in 0..childCount - 1) {
+        val child = getChildAt(i)
+        if (child is ViewGroup) {
+            child.removeViewsByTag(tag)
+        }
+
+        if (child.tag == tag) {
+            removeView(child)
+        }
+    }
+}
+```
+
+
+```kotlin
+fun TextView.font(font: String) {
+    typeface = Typeface.createFromAsset(context.assets, "fonts/$font.ttf")
+}
+```
+
+
+```kotlin
+fun View.visible(): View {
+    if (visibility != View.VISIBLE) visibility = View.VISIBLE
+    return this
+}
+```
+
+
+```kotlin
+fun View.isVisible(): Boolean {
+    return visibility == View.VISIBLE
+}
+```
+
+
+```kotlin
+fun View.invisible() {
+    if (visibility != View.INVISIBLE) visibility = View.INVISIBLE
+}
+```
+
+
+```kotlin
+fun View.gone() {
+    if (visibility != View.GONE) visibility = View.GONE
+}
+```
+
+
+```kotlin
+fun ViewGroup.inflate(layoutRes: Int): View {
+    return LayoutInflater.from(context).inflate(layoutRes, this, false)
 }
 ```
