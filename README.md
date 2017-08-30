@@ -982,9 +982,11 @@ fun String.isNumeric(): Boolean {
 }
 ```
 
-```
+
+```kotlin
 fun String.equalsIgnoreCase(other: String) = this.toLowerCase().contentEquals(other.toLowerCase())
 ```
+
 
 ```kotlin
 private fun encrypt(string: String?, type: String): String {
@@ -1016,4 +1018,342 @@ private fun bytes2Hex(bts: ByteArray): String {
     }
     return des
 }
+```
+
+
+```kotlin
+inline val Context.displayWidth: Int
+    get() = resources.displayMetrics.widthPixels
+```
+
+
+```kotlin
+inline val Context.displayHeight: Int
+    get() = resources.displayMetrics.heightPixels
+```
+
+
+```kotlin
+inline val Context.displayMetricks: DisplayMetrics
+    get() = resources.displayMetrics
+```
+
+
+```kotlin
+inline val Context.inflater: LayoutInflater
+    get() = LayoutInflater.from(this)
+```
+
+
+```kotlin
+inline fun <reified T : Any> Context.intent() = Intent(this, T::class.java)
+```
+
+
+```kotlin
+inline fun <reified T : Any> Context.intent(body: Intent.() -> Unit): Intent {
+    val intent = Intent(this, T::class.java)
+    intent.body()
+    return intent
+}
+```
+
+
+```kotlin
+inline fun <reified T : Activity> Context?.startActivity() = this?.startActivity(Intent(this, T::class.java))
+```
+
+
+```kotlin
+inline fun <reified T : Service> Context?.startService() = this?.startService(Intent(this, T::class.java))
+```
+
+
+```kotlin
+inline fun <reified T : Activity> Context.startActivityWithAnimation(enterResId: Int = 0, exitResId: Int = 0) {
+    val intent = Intent(this, T::class.java)
+    val bundle = ActivityOptionsCompat.makeCustomAnimation(this, enterResId, exitResId).toBundle()
+    ContextCompat.startActivity(this, intent, bundle)
+}
+```
+
+
+```kotlin
+inline fun <reified T : Activity> Context.startActivityWithAnimation(enterResId: Int = 0, exitResId: Int = 0, intentBody: Intent.() -> Unit) {
+    val intent = Intent(this, T::class.java)
+    intent.intentBody()
+    val bundle = ActivityOptionsCompat.makeCustomAnimation(this, enterResId, exitResId).toBundle()
+    ContextCompat.startActivity(this, intent, bundle)
+}
+```
+
+
+```kotlin
+fun Context?.toast(text: CharSequence, duration: Int = Toast.LENGTH_LONG) = this?.let { Toast.makeText(it, text, duration).show() }
+```
+
+
+```kotlin
+fun Context?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { Toast.makeText(it, textId, duration).show() }
+```
+
+
+```kotlin
+fun Context.getInteger(@IntegerRes id: Int) = resources.getInteger(id)
+```
+
+
+```kotlin
+fun Context.getBoolean(@BoolRes id: Int) = resources.getBoolean(id)
+```
+
+
+```kotlin
+fun Context.getColor(@ColorRes id: Int) = ContextCompat.getColor(this, id)
+```
+
+
+```kotlin
+fun Context.getDrawable(@DrawableRes id: Int) = ContextCompat.getDrawable(this, id)
+```
+
+
+```kotlin
+fun Context.inflateLayout(@LayoutRes layoutId: Int, parent: ViewGroup? = null, attachToRoot: Boolean = false): View
+        = LayoutInflater.from(this).inflate(layoutId, parent, attachToRoot)
+```
+
+
+```kotlin
+inline val Context.inputManager: InputMethodManager?
+    get() = getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
+```
+
+
+```kotlin
+inline val Context.notificationManager: NotificationManager?
+    get() = getSystemService(NOTIFICATION_SERVICE) as? NotificationManager
+```
+
+
+```kotlin
+inline val Context.keyguardManager: KeyguardManager?
+    get() = getSystemService(KEYGUARD_SERVICE) as? KeyguardManager
+```
+
+
+```kotlin
+inline val Context.telephonyManager: TelephonyManager?
+    get() = getSystemService(TELEPHONY_SERVICE) as? TelephonyManager
+```
+
+
+```kotlin
+inline val Context.devicePolicyManager: DevicePolicyManager?
+    get() = getSystemService(DEVICE_POLICY_SERVICE) as? DevicePolicyManager
+```
+
+
+```kotlin
+inline val Context.connectivityManager: ConnectivityManager?
+    get() = getSystemService(CONNECTIVITY_SERVICE) as? ConnectivityManager
+```
+
+
+```kotlin
+inline val Context.alarmManager: AlarmManager?
+    get() = getSystemService(ALARM_SERVICE) as? AlarmManager
+```
+
+
+```kotlin
+inline val Context.clipboardManager: ClipboardManager?
+    get() = getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager
+```
+
+
+```kotlin
+inline val Context.jobScheduler: JobScheduler?
+    get() = getSystemService(JOB_SCHEDULER_SERVICE) as? JobScheduler
+```
+
+
+```kotlin
+inline fun Context.notification(body: NotificationCompat.Builder.() -> Unit): Notification {
+    val builder = NotificationCompat.Builder(this)
+    builder.body()
+    return builder.build()
+}
+```
+
+
+```kotlin
+fun Context.browse(url: String, newTask: Boolean = false): Boolean {
+    try {
+        val intent = intent(ACTION_VIEW) {
+            data = Uri.parse(url)
+            if (newTask) addFlags(FLAG_ACTIVITY_NEW_TASK)
+        }
+        startActivity(intent)
+        return true
+    } catch (e: Exception) {
+        return false
+    }
+}
+```
+
+
+```kotlin
+fun Context.share(text: String, subject: String = ""): Boolean {
+    val intent = Intent()
+    intent.type = "text/plain"
+    intent.putExtra(EXTRA_SUBJECT, subject)
+    intent.putExtra(EXTRA_TEXT, text)
+    try {
+        startActivity(createChooser(intent, null))
+        return true
+    } catch (e: ActivityNotFoundException) {
+        return false
+    }
+}
+```
+
+
+```kotlin
+fun Context.email(email: String, subject: String = "", text: String = ""): Boolean {
+    val intent = intent(ACTION_SENDTO) {
+        data = Uri.parse("mailto:")
+        putExtra(EXTRA_EMAIL, arrayOf(email))
+        if (subject.isNotBlank()) putExtra(EXTRA_SUBJECT, subject)
+        if (text.isNotBlank()) putExtra(EXTRA_TEXT, text)
+    }
+    if (intent.resolveActivity(packageManager) != null) {
+        startActivity(intent)
+        return true
+    }
+    return false
+}
+```
+
+
+```kotlin
+fun Context.makeCall(number: String): Boolean {
+    try {
+        val intent = Intent(ACTION_CALL, Uri.parse("tel:$number"))
+        startActivity(intent)
+        return true
+    } catch (e: Exception) {
+        return false
+    }
+}
+```
+
+
+```kotlin
+fun Context.sendSms(number: String, text: String = ""): Boolean {
+    try {
+        val intent = intent(ACTION_VIEW, Uri.parse("sms:$number")) {
+            putExtra("sms_body", text)
+        }
+        startActivity(intent)
+        return true
+    } catch (e: Exception) {
+        return false
+    }
+}
+```
+
+
+```kotlin
+fun Context.rate(): Boolean = browse("market://details?id=$packageName") or browse("http://play.google.com/store/apps/details?id=$packageName")
+```
+
+
+```kotlin
+fun Fragment?.toast(text: CharSequence, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(text, duration) }
+```
+
+
+```kotlin
+fun Fragment?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(textId, duration) }
+```
+
+
+```kotlin
+fun SupportFragment?.toast(text: CharSequence, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(text, duration) }
+```
+
+
+```kotlin
+fun SupportFragment?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(textId, duration) }
+```
+
+
+```kotlin
+inline fun Fragment.notification(body: NotificationCompat.Builder.() -> Unit) = activity.notification(body)
+```
+
+
+```kotlin
+inline fun SupportFragment.notification(body: NotificationCompat.Builder.() -> Unit) = activity.notification(body)
+```
+
+
+```kotlin
+fun Fragment.browse(url: String, newTask: Boolean = false) = activity.browse(url, newTask)
+```
+
+
+```kotlin
+fun SupportFragment.browse(url: String, newTask: Boolean = false) = activity.browse(url, newTask)
+```
+
+
+```kotlin
+fun Fragment.share(text: String, subject: String = "") = activity.share(text, subject)
+```
+
+
+```kotlin
+fun SupportFragment.share(text: String, subject: String = "") = activity.share(text, subject)
+```
+
+
+```kotlin
+fun Fragment.email(email: String, subject: String = "", text: String = "") = activity.email(email, subject, text)
+```
+
+
+```kotlin
+fun SupportFragment.email(email: String, subject: String = "", text: String = "") = activity.email(email, subject, text)
+```
+
+
+```kotlin
+fun Fragment.makeCall(number: String) = activity.makeCall(number)
+```
+
+
+```kotlin
+fun SupportFragment.makeCall(number: String) = activity.makeCall(number)
+```
+
+
+```kotlin
+fun Fragment.sendSms(number: String, text: String = "") = activity.sendSms(number, text)
+```
+
+
+```kotlin
+fun SupportFragment.sendSms(number: String, text: String = "") = activity.sendSms(number, text)
+```
+
+
+```kotlin
+fun Fragment.rate() = activity.rate()
+```
+
+
+```kotlin
+fun SupportFragment.rate() = activity.rate()
 ```
