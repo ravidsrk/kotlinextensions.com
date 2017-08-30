@@ -142,6 +142,9 @@ fun <T : ViewDataBinding> ViewGroup.bind(layoutId: Int): T {
 }
 
 
+/**
+ * Extension method to get Date for String with specified format.
+ */
 fun String.dateInFormat(format: String): Date? {
     val dateFormat = SimpleDateFormat(format, Locale.US)
     var parsedDate: Date? = null

@@ -247,3 +247,773 @@ fun getClickableSpan(color: Int, action: (view: View) -> Unit): ClickableSpan {
 }
 ```
 
+
+
+```kotlin
+/**
+ * Extension method to get ClickableSpan.
+ * e.g.
+ * val loginLink = getClickableSpan(context.getColorCompat(R.color.colorAccent), { })
+ */
+fun View.doOnLayout(onLayout: (View) -> Boolean) {
+    addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
+        override fun onLayoutChange(view: View, left: Int, top: Int, right: Int, bottom: Int,
+                oldLeft: Int, oldTop: Int, oldRight: Int, oldBottom: Int) {
+            if (onLayout(view)) {
+                view.removeOnLayoutChangeListener(this)
+            }
+        }
+    })
+}
+```
+
+
+
+```kotlin
+/**
+ * Extension method to get ClickableSpan.
+ * e.g.
+ * val loginLink = getClickableSpan(context.getColorCompat(R.color.colorAccent), { })
+ */
+fun View.updatePadding(paddingStart: Int = getPaddingStart(),
+        paddingTop: Int = getPaddingTop(),
+        paddingEnd: Int = getPaddingEnd(),
+        paddingBottom: Int = getPaddingBottom()) {
+    setPaddingRelative(paddingStart, paddingTop, paddingEnd, paddingBottom)
+}
+```
+
+
+
+```kotlin
+/**
+ * Extension method to get ClickableSpan.
+ * e.g.
+ * val loginLink = getClickableSpan(context.getColorCompat(R.color.colorAccent), { })
+ */
+fun ImageView.loadFromUrl(imageUrl: String) {
+    Glide.with(this).load(imageUrl).into(this)
+}
+```
+
+
+
+```kotlin
+/**
+ * Extension method to get ClickableSpan.
+ * e.g.
+ * val loginLink = getClickableSpan(context.getColorCompat(R.color.colorAccent), { })
+ */
+fun MenuItem.loadIconFromUrl(context: Context, imageUrl: String) {
+    Glide.with(context).asBitmap()
+            .load(imageUrl)
+            .into(object : SimpleTarget<Bitmap>(100, 100) {
+                override fun onResourceReady(resource: Bitmap?, transition: Transition<in Bitmap>?) {
+                    val circularIcon = RoundedBitmapDrawableFactory.create(context.resources, resource)
+                    circularIcon.isCircular = true
+                    icon = circularIcon
+                }
+            })
+}
+```
+
+
+
+```kotlin
+/**
+ * Extension method to get ClickableSpan.
+ * e.g.
+ * val loginLink = getClickableSpan(context.getColorCompat(R.color.colorAccent), { })
+ */
+inline fun SharedPreferences.edit(preferApply: Boolean = false, f: SharedPreferences.Editor.() -> Unit) {
+    val editor = edit()
+    editor.f()
+    if (preferApply) editor.apply() else editor.commit()
+}
+```
+
+
+
+```kotlin
+/**
+ * The `fragment` is added to the container view with id `frameId`. The operation is
+ * performed by the `fragmentManager`.
+ */
+fun AppCompatActivity.replaceFragmentInActivity(fragment: Fragment, @IdRes frameId: Int) {
+    supportFragmentManager.transact {
+        replace(frameId, fragment)
+    }
+}
+```
+
+
+
+```kotlin
+/**
+ * The `fragment` is added to the container view with tag. The operation is
+ * performed by the `fragmentManager`.
+ */
+fun AppCompatActivity.addFragmentToActivity(fragment: Fragment, tag: String) {
+    supportFragmentManager.transact {
+        add(fragment, tag)
+    }
+}
+```
+
+
+
+```kotlin
+/**
+ * Setup actionbar
+ */
+fun AppCompatActivity.setupActionBar(@IdRes toolbarId: Int, action: ActionBar.() -> Unit) {
+    setSupportActionBar(findViewById(toolbarId))
+    supportActionBar?.run {
+        action()
+    }
+}
+```
+
+
+
+```kotlin
+/**
+ * Runs a FragmentTransaction, then calls commit().
+ */
+private inline fun FragmentManager.transact(action: FragmentTransaction.() -> Unit) {
+    beginTransaction().apply {
+        action()
+    }.commit()
+}
+```
+
+
+
+```kotlin
+/**
+ * Transforms static java function Snackbar.make() to an extension function on View.
+ */
+fun View.showSnackbar(snackbarText: String, timeLength: Int) {
+    Snackbar.make(this, snackbarText, timeLength).show()
+}
+```
+
+
+
+```kotlin
+/**
+ * Get view model for Activity
+ */
+fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) =
+        ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(viewModelClass)
+```
+
+
+
+```kotlin
+/**
+ * Triggers a snackbar message when the value contained by snackbarTaskMessageLiveEvent is modified.
+ */
+fun View.setupSnackbar(lifecycleOwner: LifecycleOwner,
+        snackbarMessageLiveEvent: SingleLiveEvent<Int>, timeLength: Int) {
+    snackbarMessageLiveEvent.observe(lifecycleOwner, Observer {
+        it?.let { showSnackbar(context.getString(it), timeLength) }
+    })
+}
+```
+
+```kotlin
+fun View.setPaddingLeft(value: Int) = setPadding(value, paddingTop, paddingRight, paddingBottom)
+```
+
+
+```kotlin
+fun View.setPaddingRight(value: Int) = setPadding(paddingLeft, paddingTop, value, paddingBottom)
+```
+
+
+```kotlin
+fun View.setPaddingTop(value: Int) = setPaddingRelative(paddingStart, value, paddingEnd, paddingBottom)
+```
+
+
+```kotlin
+fun View.setPaddingBottom(value: Int) = setPaddingRelative(paddingStart, paddingTop, paddingEnd, value)
+```
+
+
+```kotlin
+fun View.setPaddingStart(value: Int) = setPaddingRelative(value, paddingTop, paddingEnd, paddingBottom)
+```
+
+
+```kotlin
+fun View.setPaddingEnd(value: Int) = setPaddingRelative(paddingStart, paddingTop, value, paddingBottom)
+```
+
+
+```kotlin
+fun View.setPaddingHorizontal(value: Int) = setPaddingRelative(value, paddingTop, value, paddingBottom)
+```
+
+
+```kotlin
+fun View.setPaddingVertical(value: Int) = setPaddingRelative(paddingStart, value, paddingEnd, value)
+```
+
+
+```kotlin
+fun View.setHeight(value: Int) {
+    val lp = layoutParams
+    lp?.let {
+        lp.height = value
+        layoutParams = lp
+    }
+}
+```
+
+
+```kotlin
+fun View.setWidth(value: Int) {
+    val lp = layoutParams
+    lp?.let {
+        lp.width = value
+        layoutParams = lp
+    }
+}
+```
+
+```kotlin
+fun View.resize(width: Int, height: Int) {
+    val lp = layoutParams
+    lp?.let {
+        lp.width = width
+        lp.height = height
+        layoutParams = lp
+    }
+}
+```
+
+
+```kotlin
+val ViewGroup.children: List<View>
+    get() = (0 until childCount).map { getChildAt(it) }
+
+fun View.animateWidth(toValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
+    if (toValue == width || layoutParams == null) {
+        return AnimatePropsWrapper(null)
+    }
+    return AnimatePropsWrapper(ValueAnimator().apply {
+        setIntValues(width, toValue)
+        setDuration(duration)
+        setInterpolator(interpolator)
+        addUpdateListener {
+            val lp = layoutParams
+            lp.width = it.animatedValue as Int
+            layoutParams = lp
+        }
+        start()
+    })
+}
+```
+
+
+```kotlin
+fun View.animateWidthBy(byValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
+        = animateWidth(width + byValue, duration, interpolator)
+```
+
+
+```kotlin
+fun View.animateHeight(toValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
+    if (toValue == height || layoutParams == null) {
+        return AnimatePropsWrapper(null)
+    }
+    return AnimatePropsWrapper(ValueAnimator().apply {
+        setIntValues(height, toValue)
+        setDuration(duration)
+        setInterpolator(interpolator)
+        addUpdateListener {
+            val lp = layoutParams
+            lp.height = it.animatedValue as Int
+            layoutParams = lp
+        }
+        start()
+    })
+}
+```
+
+
+```kotlin
+fun View.animateHeightBy(byValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
+        = animateHeight(height + byValue, duration, interpolator)
+```
+
+
+```kotlin
+fun TextView.underLine() {
+    paint.flags = paint.flags or Paint.UNDERLINE_TEXT_FLAG
+    paint.isAntiAlias = true
+}
+```
+
+
+```kotlin
+fun TextView.deleteLine() {
+    paint.flags = paint.flags or Paint.STRIKE_THRU_TEXT_FLAG
+    paint.isAntiAlias = true
+}
+```
+
+
+```kotlin
+fun TextView.bold() {
+    paint.isFakeBoldText = true
+    paint.isAntiAlias = true
+}
+```
+
+
+```kotlin
+fun View.click(block: (View) -> Unit) = setOnClickListener { block(it) }
+```
+
+
+```kotlin
+fun View.longClick(block: (View) -> Boolean) = setOnLongClickListener { block(it) }
+```
+
+
+```kotlin
+fun View.visiable() {
+    if (visibility != View.VISIBLE) {
+        visibility = View.VISIBLE
+    }
+}
+```
+
+
+```kotlin
+inline fun View.visiableIf(block: () -> Boolean) {
+    if (visibility != View.VISIBLE && block()) {
+        visibility = View.VISIBLE
+    }
+}
+```
+
+
+```kotlin
+fun View.invisiable() {
+    if (visibility != View.INVISIBLE) {
+        visibility = View.INVISIBLE
+    }
+}
+```
+
+
+```kotlin
+inline fun View.invisiableIf(block: () -> Boolean) {
+    if (visibility != View.INVISIBLE && block()) {
+        visibility = View.INVISIBLE
+    }
+}
+```
+
+```kotlin
+fun View.gone() {
+    if (visibility != View.GONE) {
+        visibility = View.GONE
+    }
+}
+```
+
+
+```kotlin
+inline fun View.goneIf(block: () -> Boolean) {
+    if (visibility != View.GONE && block()) {
+        visibility = View.GONE
+    }
+}
+```
+
+
+```kotlin
+fun View.animateX(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
+    if (toValue == translationX) {
+        return AnimatePropsWrapper(null)
+    }
+    return AnimatePropsWrapper(ValueAnimator().apply {
+        setFloatValues(translationX, toValue)
+        setDuration(duration)
+        setInterpolator(interpolator)
+        addUpdateListener { this@animateX.translationX = it.animatedValue as Float }
+        start()
+    })
+}
+```
+
+
+```kotlin
+fun View.animateXBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
+        = animateX(translationX + toValue, duration, interpolator)
+```
+
+
+```kotlin
+fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
+    if (toValue == translationY) {
+        return AnimatePropsWrapper(null)
+    }
+    return AnimatePropsWrapper(ValueAnimator().apply {
+        setFloatValues(translationY, toValue)
+        setDuration(duration)
+        setInterpolator(interpolator)
+        addUpdateListener { this@animateY.translationY = it.animatedValue as Float }
+        start()
+    })
+}
+```
+
+
+```kotlin
+fun View.animateYBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
+        = animateY(translationY + toValue, duration, interpolator)
+```
+
+```kotlin
+val EditText.value
+    get() = text.toString()
+```
+
+
+```kotlin
+fun View.getBitmap(): Bitmap {
+    val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(bmp)
+    draw(canvas)
+    canvas.save()
+    return bmp
+}
+```
+
+
+```kotlin
+inline fun aboveApi(api: Int, included: Boolean = false, block: () -> Unit) {
+    if (Build.VERSION.SDK_INT > if (included) api - 1 else api) {
+        block()
+    }
+}
+```
+
+
+```kotlin
+inline fun belowApi(api: Int, included: Boolean = false, block: () -> Unit) {
+    if (Build.VERSION.SDK_INT < if (included) api + 1 else api) {
+        block()
+    }
+}
+```
+
+
+```kotlin
+fun Bitmap.toBase64(): String {
+    var result = ""
+    val baos = ByteArrayOutputStream()
+    try {
+        compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        baos.flush()
+        baos.close()
+        val bitmapBytes = baos.toByteArray()
+        result = Base64.encodeToString(bitmapBytes, Base64.DEFAULT)
+    } catch (e: IOException) {
+        e.printStackTrace()
+    } finally {
+        try {
+            baos.flush()
+            baos.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+    return result
+}
+```
+
+
+```kotlin
+fun Bitmap.resize(w: Number, h: Number): Bitmap {
+    val width = width
+    val height = height
+    val scaleWidth = w.toFloat() / width
+    val scaleHeight = h.toFloat() / height
+    val matrix = Matrix()
+    matrix.postScale(scaleWidth, scaleHeight)
+    if (width > 0 && height > 0) {
+        return Bitmap.createBitmap(this, 0, 0, width, height, matrix, true)
+    }
+    return this
+}
+```
+
+
+```kotlin
+fun Bitmap.saveFile(path: String) {
+    val f = File(path)
+    if (!f.exists()) {
+        f.createNewFile()
+    }
+    val stream = FileOutputStream(f)
+    compress(Bitmap.CompressFormat.PNG, 100, stream)
+    stream.flush()
+    stream.close()
+}
+```
+
+
+```kotlin
+fun findColor(@ColorRes resId: Int) = ContextCompat.getColor(Ext.ctx, resId)
+```
+
+
+```kotlin
+fun findDrawable(@DrawableRes resId: Int): Drawable? = ContextCompat.getDrawable(Ext.ctx, resId)
+```
+
+
+```kotlin
+fun findColorStateList(@ColorRes resId: Int): ColorStateList? = ContextCompat.getColorStateList(Ext.ctx, resId)
+```
+
+
+```kotlin
+fun inflate(@LayoutRes layoutId: Int, parent: ViewGroup?, attachToRoot: Boolean = false) = LayoutInflater.from(Ext.ctx).inflate(layoutId, parent, attachToRoot)!!
+```
+
+
+```kotlin
+fun inflate(@LayoutRes layoutId: Int) = inflate(layoutId, null)
+```
+
+
+```kotlin
+fun Context.dial(tel: String?) = startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + tel)))
+```
+
+
+```kotlin
+fun Context.sms(phone: String?, body: String = "") {
+    val smsToUri = Uri.parse("smsto:" + phone)
+    val intent = Intent(Intent.ACTION_SENDTO, smsToUri)
+    intent.putExtra("sms_body", body)
+    startActivity(intent)
+}
+```
+
+
+```kotlin
+fun isMainThread(): Boolean = Looper.myLooper() == Looper.getMainLooper()
+```
+
+```kotlin
+private enum class DateExpr {
+    YEAR, MONTH, DAY,
+    HOUR, MINUTE, SECOND,
+    WEEK, DAY_YEAR, WEEK_YEAR,
+    CONSTELLATION
+}
+
+fun Long.date(pattern: String = "yyyy-MM-dd HH:mm:ss"): String? = SimpleDateFormat(pattern, Locale.CHINA).format(this)
+
+fun Long.year() = getData(this, DateExpr.YEAR)
+
+fun Long.month() = getData(this, DateExpr.MONTH)
+
+fun Long.day() = getData(this, DateExpr.DAY)
+
+fun Long.week() = getData(this, DateExpr.WEEK)
+
+fun Long.hour() = getData(this, DateExpr.HOUR)
+
+fun Long.minute() = getData(this, DateExpr.MINUTE)
+
+fun Long.second() = getData(this, DateExpr.SECOND)
+
+fun Long.dayOfYear() = getData(this, DateExpr.DAY_YEAR)
+
+fun Long.weekOfYear() = getData(this, DateExpr.WEEK_YEAR)
+
+fun Long.constellation() = getData(this, DateExpr.CONSTELLATION)
+
+fun Int.isLeapYear() = (this % 4 == 0) && (this % 100 != 0) || (this % 400 == 0)
+```
+
+
+```kotlin
+inline val connectivityManager: ConnectivityManager
+    get() = Ext.ctx.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+```
+
+
+```kotlin
+inline val alarmManager: AlarmManager
+    get() = Ext.ctx.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+```
+
+
+```kotlin
+inline val telephonyManager: TelephonyManager
+    get() = Ext.ctx.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+```
+
+
+```kotlin
+inline val activityManager: ActivityManager
+    get() = Ext.ctx.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+```
+
+
+
+```kotlin
+inline val notificationManager: NotificationManager
+    get() = Ext.ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+```
+
+
+```kotlin
+inline val appWidgetManager
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    get() = Ext.ctx.getSystemService(Context.APPWIDGET_SERVICE) as AppWidgetManager
+```
+
+
+```kotlin
+inline val inputMethodManager: InputMethodManager
+    get() = Ext.ctx.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+```
+
+
+```kotlin
+inline val clipboardManager
+    get() = Ext.ctx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+```
+
+
+```kotlin
+inline val bluetoothManager: BluetoothManager
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+    get() = Ext.ctx.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
+```
+
+
+```kotlin
+inline val audioManager
+    get() = Ext.ctx.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+```
+
+
+```kotlin
+inline val batteryManager
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    get() = Ext.ctx.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
+```
+
+
+```kotlin
+fun spannableSize(text: String, textSize: Int, isDip: Boolean, start: Int, end: Int): SpannableString {
+    val sp = SpannableString(text)
+    sp.setSpan(AbsoluteSizeSpan(textSize, isDip), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+    return sp
+}
+```
+
+
+```kotlin
+fun spannableBold(text: String, start: Int, end: Int): SpannableString {
+    val sp = SpannableString(text)
+    sp.setSpan(StyleSpan(Typeface.BOLD), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+    return sp
+}
+```
+
+
+```kotlin
+fun spannableColor(text: String, @ColorRes colorId: Int, start: Int, end: Int): SpannableString {
+    val sp = SpannableString(text)
+    sp.setSpan(ForegroundColorSpan(findColor(colorId)), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
+    return sp
+}
+```
+
+```kotlin
+fun String.toast(isShortToast: Boolean = true) = toast(this, isShortToast)
+```
+
+
+```kotlin
+fun String.md5() = encrypt(this, "MD5")
+```
+
+
+```kotlin
+fun String.sha1() = encrypt(this, "SHA-1")
+```
+
+
+```kotlin
+fun String.isPhone(): Boolean {
+    val p = "^1([34578])\\d{9}\$".toRegex()
+    return matches(p)
+}
+```
+
+
+```kotlin
+fun String.isEmail(): Boolean {
+    val p = "^(\\w)+(\\.\\w+)*@(\\w)+((\\.\\w+)+)\$".toRegex()
+    return matches(p)
+}
+```
+
+
+```kotlin
+fun String.isNumeric(): Boolean {
+    val p = "^[0-9]+$".toRegex()
+    return matches(p)
+}
+```
+
+```
+fun String.equalsIgnoreCase(other: String) = this.toLowerCase().contentEquals(other.toLowerCase())
+```
+
+```kotlin
+private fun encrypt(string: String?, type: String): String {
+    if (string.isNullOrEmpty()) {
+        return ""
+    }
+    val md5: MessageDigest
+    return try {
+        md5 = MessageDigest.getInstance(type)
+        val bytes = md5.digest(string!!.toByteArray())
+        bytes2Hex(bytes)
+    } catch (e: NoSuchAlgorithmException) {
+        ""
+    }
+}
+```
+
+
+```kotlin
+private fun bytes2Hex(bts: ByteArray): String {
+    var des = ""
+    var tmp: String
+    for (i in bts.indices) {
+        tmp = Integer.toHexString(bts[i].toInt() and 0xFF)
+        if (tmp.length == 1) {
+            des += "0"
+        }
+        des += tmp
+    }
+    return des
+}
+```
