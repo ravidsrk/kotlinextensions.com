@@ -423,46 +423,73 @@ fun View.setupSnackbar(lifecycleOwner: LifecycleOwner,
 ```
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.setPaddingLeft(value: Int) = setPadding(value, paddingTop, paddingRight, paddingBottom)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.setPaddingRight(value: Int) = setPadding(paddingLeft, paddingTop, value, paddingBottom)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.setPaddingTop(value: Int) = setPaddingRelative(paddingStart, value, paddingEnd, paddingBottom)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.setPaddingBottom(value: Int) = setPaddingRelative(paddingStart, paddingTop, paddingEnd, value)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.setPaddingStart(value: Int) = setPaddingRelative(value, paddingTop, paddingEnd, paddingBottom)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.setPaddingEnd(value: Int) = setPaddingRelative(paddingStart, paddingTop, value, paddingBottom)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.setPaddingHorizontal(value: Int) = setPaddingRelative(value, paddingTop, value, paddingBottom)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.setPaddingVertical(value: Int) = setPaddingRelative(paddingStart, value, paddingEnd, value)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.setHeight(value: Int) {
     val lp = layoutParams
     lp?.let {
@@ -474,6 +501,9 @@ fun View.setHeight(value: Int) {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.setWidth(value: Int) {
     val lp = layoutParams
     lp?.let {
@@ -483,7 +513,11 @@ fun View.setWidth(value: Int) {
 }
 ```
 
+
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.resize(width: Int, height: Int) {
     val lp = layoutParams
     lp?.let {
@@ -496,6 +530,9 @@ fun View.resize(width: Int, height: Int) {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 val ViewGroup.children: List<View>
     get() = (0 until childCount).map { getChildAt(it) }
 
@@ -519,12 +556,18 @@ fun View.animateWidth(toValue: Int, duration: Long = DURATION, interpolator: Int
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.animateWidthBy(byValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateWidth(width + byValue, duration, interpolator)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.animateHeight(toValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
     if (toValue == height || layoutParams == null) {
         return AnimatePropsWrapper(null)
@@ -545,12 +588,18 @@ fun View.animateHeight(toValue: Int, duration: Long = DURATION, interpolator: In
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.animateHeightBy(byValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateHeight(height + byValue, duration, interpolator)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun TextView.underLine() {
     paint.flags = paint.flags or Paint.UNDERLINE_TEXT_FLAG
     paint.isAntiAlias = true
@@ -559,6 +608,9 @@ fun TextView.underLine() {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun TextView.deleteLine() {
     paint.flags = paint.flags or Paint.STRIKE_THRU_TEXT_FLAG
     paint.isAntiAlias = true
@@ -567,6 +619,9 @@ fun TextView.deleteLine() {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun TextView.bold() {
     paint.isFakeBoldText = true
     paint.isAntiAlias = true
@@ -575,16 +630,25 @@ fun TextView.bold() {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.click(block: (View) -> Unit) = setOnClickListener { block(it) }
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.longClick(block: (View) -> Boolean) = setOnLongClickListener { block(it) }
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.visiable() {
     if (visibility != View.VISIBLE) {
         visibility = View.VISIBLE
@@ -594,6 +658,9 @@ fun View.visiable() {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun View.visiableIf(block: () -> Boolean) {
     if (visibility != View.VISIBLE && block()) {
         visibility = View.VISIBLE
@@ -603,6 +670,9 @@ inline fun View.visiableIf(block: () -> Boolean) {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.invisiable() {
     if (visibility != View.INVISIBLE) {
         visibility = View.INVISIBLE
@@ -612,6 +682,9 @@ fun View.invisiable() {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun View.invisiableIf(block: () -> Boolean) {
     if (visibility != View.INVISIBLE && block()) {
         visibility = View.INVISIBLE
@@ -620,6 +693,9 @@ inline fun View.invisiableIf(block: () -> Boolean) {
 ```
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.gone() {
     if (visibility != View.GONE) {
         visibility = View.GONE
@@ -629,6 +705,9 @@ fun View.gone() {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun View.goneIf(block: () -> Boolean) {
     if (visibility != View.GONE && block()) {
         visibility = View.GONE
@@ -638,6 +717,9 @@ inline fun View.goneIf(block: () -> Boolean) {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.animateX(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
     if (toValue == translationX) {
         return AnimatePropsWrapper(null)
@@ -654,12 +736,18 @@ fun View.animateX(toValue: Float, duration: Long = DURATION, interpolator: Inter
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.animateXBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateX(translationX + toValue, duration, interpolator)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
     if (toValue == translationY) {
         return AnimatePropsWrapper(null)
@@ -676,17 +764,26 @@ fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Inter
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.animateYBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateY(translationY + toValue, duration, interpolator)
 ```
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 val EditText.value
     get() = text.toString()
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.getBitmap(): Bitmap {
     val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
     val canvas = Canvas(bmp)
@@ -698,6 +795,9 @@ fun View.getBitmap(): Bitmap {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun aboveApi(api: Int, included: Boolean = false, block: () -> Unit) {
     if (Build.VERSION.SDK_INT > if (included) api - 1 else api) {
         block()
@@ -707,6 +807,9 @@ inline fun aboveApi(api: Int, included: Boolean = false, block: () -> Unit) {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun belowApi(api: Int, included: Boolean = false, block: () -> Unit) {
     if (Build.VERSION.SDK_INT < if (included) api + 1 else api) {
         block()
@@ -716,6 +819,9 @@ inline fun belowApi(api: Int, included: Boolean = false, block: () -> Unit) {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Bitmap.toBase64(): String {
     var result = ""
     val baos = ByteArrayOutputStream()
@@ -741,6 +847,9 @@ fun Bitmap.toBase64(): String {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Bitmap.resize(w: Number, h: Number): Bitmap {
     val width = width
     val height = height
@@ -757,6 +866,9 @@ fun Bitmap.resize(w: Number, h: Number): Bitmap {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Bitmap.saveFile(path: String) {
     val f = File(path)
     if (!f.exists()) {
@@ -771,36 +883,57 @@ fun Bitmap.saveFile(path: String) {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun findColor(@ColorRes resId: Int) = ContextCompat.getColor(Ext.ctx, resId)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun findDrawable(@DrawableRes resId: Int): Drawable? = ContextCompat.getDrawable(Ext.ctx, resId)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun findColorStateList(@ColorRes resId: Int): ColorStateList? = ContextCompat.getColorStateList(Ext.ctx, resId)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun inflate(@LayoutRes layoutId: Int, parent: ViewGroup?, attachToRoot: Boolean = false) = LayoutInflater.from(Ext.ctx).inflate(layoutId, parent, attachToRoot)!!
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun inflate(@LayoutRes layoutId: Int) = inflate(layoutId, null)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.dial(tel: String?) = startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + tel)))
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.sms(phone: String?, body: String = "") {
     val smsToUri = Uri.parse("smsto:" + phone)
     val intent = Intent(Intent.ACTION_SENDTO, smsToUri)
@@ -811,10 +944,16 @@ fun Context.sms(phone: String?, body: String = "") {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun isMainThread(): Boolean = Looper.myLooper() == Looper.getMainLooper()
 ```
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 private enum class DateExpr {
     YEAR, MONTH, DAY,
     HOUR, MINUTE, SECOND,
@@ -849,24 +988,36 @@ fun Int.isLeapYear() = (this % 4 == 0) && (this % 100 != 0) || (this % 400 == 0)
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val connectivityManager: ConnectivityManager
     get() = Ext.ctx.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val alarmManager: AlarmManager
     get() = Ext.ctx.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val telephonyManager: TelephonyManager
     get() = Ext.ctx.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val activityManager: ActivityManager
     get() = Ext.ctx.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
 ```
@@ -874,12 +1025,18 @@ inline val activityManager: ActivityManager
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val notificationManager: NotificationManager
     get() = Ext.ctx.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val appWidgetManager
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     get() = Ext.ctx.getSystemService(Context.APPWIDGET_SERVICE) as AppWidgetManager
@@ -887,18 +1044,27 @@ inline val appWidgetManager
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val inputMethodManager: InputMethodManager
     get() = Ext.ctx.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val clipboardManager
     get() = Ext.ctx.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val bluetoothManager: BluetoothManager
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
     get() = Ext.ctx.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
@@ -906,12 +1072,18 @@ inline val bluetoothManager: BluetoothManager
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val audioManager
     get() = Ext.ctx.getSystemService(Context.AUDIO_SERVICE) as AudioManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val batteryManager
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     get() = Ext.ctx.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
@@ -919,6 +1091,9 @@ inline val batteryManager
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun spannableSize(text: String, textSize: Int, isDip: Boolean, start: Int, end: Int): SpannableString {
     val sp = SpannableString(text)
     sp.setSpan(AbsoluteSizeSpan(textSize, isDip), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
@@ -928,6 +1103,9 @@ fun spannableSize(text: String, textSize: Int, isDip: Boolean, start: Int, end: 
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun spannableBold(text: String, start: Int, end: Int): SpannableString {
     val sp = SpannableString(text)
     sp.setSpan(StyleSpan(Typeface.BOLD), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
@@ -937,6 +1115,9 @@ fun spannableBold(text: String, start: Int, end: Int): SpannableString {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun spannableColor(text: String, @ColorRes colorId: Int, start: Int, end: Int): SpannableString {
     val sp = SpannableString(text)
     sp.setSpan(ForegroundColorSpan(findColor(colorId)), start, end, Spanned.SPAN_INCLUSIVE_EXCLUSIVE)
@@ -945,21 +1126,33 @@ fun spannableColor(text: String, @ColorRes colorId: Int, start: Int, end: Int): 
 ```
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun String.toast(isShortToast: Boolean = true) = toast(this, isShortToast)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun String.md5() = encrypt(this, "MD5")
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun String.sha1() = encrypt(this, "SHA-1")
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun String.isPhone(): Boolean {
     val p = "^1([34578])\\d{9}\$".toRegex()
     return matches(p)
@@ -968,6 +1161,9 @@ fun String.isPhone(): Boolean {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun String.isEmail(): Boolean {
     val p = "^(\\w)+(\\.\\w+)*@(\\w)+((\\.\\w+)+)\$".toRegex()
     return matches(p)
@@ -976,6 +1172,9 @@ fun String.isEmail(): Boolean {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun String.isNumeric(): Boolean {
     val p = "^[0-9]+$".toRegex()
     return matches(p)
@@ -984,11 +1183,17 @@ fun String.isNumeric(): Boolean {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun String.equalsIgnoreCase(other: String) = this.toLowerCase().contentEquals(other.toLowerCase())
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 private fun encrypt(string: String?, type: String): String {
     if (string.isNullOrEmpty()) {
         return ""
@@ -1006,6 +1211,9 @@ private fun encrypt(string: String?, type: String): String {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 private fun bytes2Hex(bts: ByteArray): String {
     var des = ""
     var tmp: String
@@ -1022,35 +1230,53 @@ private fun bytes2Hex(bts: ByteArray): String {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.displayWidth: Int
     get() = resources.displayMetrics.widthPixels
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.displayHeight: Int
     get() = resources.displayMetrics.heightPixels
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.displayMetricks: DisplayMetrics
     get() = resources.displayMetrics
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.inflater: LayoutInflater
     get() = LayoutInflater.from(this)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun <reified T : Any> Context.intent() = Intent(this, T::class.java)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun <reified T : Any> Context.intent(body: Intent.() -> Unit): Intent {
     val intent = Intent(this, T::class.java)
     intent.body()
@@ -1060,16 +1286,25 @@ inline fun <reified T : Any> Context.intent(body: Intent.() -> Unit): Intent {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun <reified T : Activity> Context?.startActivity() = this?.startActivity(Intent(this, T::class.java))
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun <reified T : Service> Context?.startService() = this?.startService(Intent(this, T::class.java))
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun <reified T : Activity> Context.startActivityWithAnimation(enterResId: Int = 0, exitResId: Int = 0) {
     val intent = Intent(this, T::class.java)
     val bundle = ActivityOptionsCompat.makeCustomAnimation(this, enterResId, exitResId).toBundle()
@@ -1079,6 +1314,9 @@ inline fun <reified T : Activity> Context.startActivityWithAnimation(enterResId:
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun <reified T : Activity> Context.startActivityWithAnimation(enterResId: Int = 0, exitResId: Int = 0, intentBody: Intent.() -> Unit) {
     val intent = Intent(this, T::class.java)
     intent.intentBody()
@@ -1089,96 +1327,147 @@ inline fun <reified T : Activity> Context.startActivityWithAnimation(enterResId:
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context?.toast(text: CharSequence, duration: Int = Toast.LENGTH_LONG) = this?.let { Toast.makeText(it, text, duration).show() }
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { Toast.makeText(it, textId, duration).show() }
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.getInteger(@IntegerRes id: Int) = resources.getInteger(id)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.getBoolean(@BoolRes id: Int) = resources.getBoolean(id)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.getColor(@ColorRes id: Int) = ContextCompat.getColor(this, id)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.getDrawable(@DrawableRes id: Int) = ContextCompat.getDrawable(this, id)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.inflateLayout(@LayoutRes layoutId: Int, parent: ViewGroup? = null, attachToRoot: Boolean = false): View
         = LayoutInflater.from(this).inflate(layoutId, parent, attachToRoot)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.inputManager: InputMethodManager?
     get() = getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.notificationManager: NotificationManager?
     get() = getSystemService(NOTIFICATION_SERVICE) as? NotificationManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.keyguardManager: KeyguardManager?
     get() = getSystemService(KEYGUARD_SERVICE) as? KeyguardManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.telephonyManager: TelephonyManager?
     get() = getSystemService(TELEPHONY_SERVICE) as? TelephonyManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.devicePolicyManager: DevicePolicyManager?
     get() = getSystemService(DEVICE_POLICY_SERVICE) as? DevicePolicyManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.connectivityManager: ConnectivityManager?
     get() = getSystemService(CONNECTIVITY_SERVICE) as? ConnectivityManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.alarmManager: AlarmManager?
     get() = getSystemService(ALARM_SERVICE) as? AlarmManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.clipboardManager: ClipboardManager?
     get() = getSystemService(CLIPBOARD_SERVICE) as? ClipboardManager
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline val Context.jobScheduler: JobScheduler?
     get() = getSystemService(JOB_SCHEDULER_SERVICE) as? JobScheduler
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun Context.notification(body: NotificationCompat.Builder.() -> Unit): Notification {
     val builder = NotificationCompat.Builder(this)
     builder.body()
@@ -1188,6 +1477,9 @@ inline fun Context.notification(body: NotificationCompat.Builder.() -> Unit): No
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.browse(url: String, newTask: Boolean = false): Boolean {
     try {
         val intent = intent(ACTION_VIEW) {
@@ -1204,6 +1496,9 @@ fun Context.browse(url: String, newTask: Boolean = false): Boolean {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.share(text: String, subject: String = ""): Boolean {
     val intent = Intent()
     intent.type = "text/plain"
@@ -1220,6 +1515,9 @@ fun Context.share(text: String, subject: String = ""): Boolean {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.email(email: String, subject: String = "", text: String = ""): Boolean {
     val intent = intent(ACTION_SENDTO) {
         data = Uri.parse("mailto:")
@@ -1237,6 +1535,9 @@ fun Context.email(email: String, subject: String = "", text: String = ""): Boole
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.makeCall(number: String): Boolean {
     try {
         val intent = Intent(ACTION_CALL, Uri.parse("tel:$number"))
@@ -1250,6 +1551,9 @@ fun Context.makeCall(number: String): Boolean {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.sendSms(number: String, text: String = ""): Boolean {
     try {
         val intent = intent(ACTION_VIEW, Uri.parse("sms:$number")) {
@@ -1265,101 +1569,161 @@ fun Context.sendSms(number: String, text: String = ""): Boolean {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Context.rate(): Boolean = browse("market://details?id=$packageName") or browse("http://play.google.com/store/apps/details?id=$packageName")
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Fragment?.toast(text: CharSequence, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(text, duration) }
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Fragment?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(textId, duration) }
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun SupportFragment?.toast(text: CharSequence, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(text, duration) }
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun SupportFragment?.toast(@StringRes textId: Int, duration: Int = Toast.LENGTH_LONG) = this?.let { activity.toast(textId, duration) }
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun Fragment.notification(body: NotificationCompat.Builder.() -> Unit) = activity.notification(body)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun SupportFragment.notification(body: NotificationCompat.Builder.() -> Unit) = activity.notification(body)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Fragment.browse(url: String, newTask: Boolean = false) = activity.browse(url, newTask)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun SupportFragment.browse(url: String, newTask: Boolean = false) = activity.browse(url, newTask)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Fragment.share(text: String, subject: String = "") = activity.share(text, subject)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun SupportFragment.share(text: String, subject: String = "") = activity.share(text, subject)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Fragment.email(email: String, subject: String = "", text: String = "") = activity.email(email, subject, text)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun SupportFragment.email(email: String, subject: String = "", text: String = "") = activity.email(email, subject, text)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Fragment.makeCall(number: String) = activity.makeCall(number)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun SupportFragment.makeCall(number: String) = activity.makeCall(number)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Fragment.sendSms(number: String, text: String = "") = activity.sendSms(number, text)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun SupportFragment.sendSms(number: String, text: String = "") = activity.sendSms(number, text)
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Fragment.rate() = activity.rate()
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun SupportFragment.rate() = activity.rate()
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun runOnUiThread(action: () -> Unit){
     if (ContextHandler.mainThread == Thread.currentThread()) action() else ContextHandler.handler.post { action() }
 }
@@ -1367,6 +1731,9 @@ fun runOnUiThread(action: () -> Unit){
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun runDelayed(delay: Long, timeUnit: TimeUnit = MILLISECONDS, action: () -> Unit) {
     Handler().postDelayed(action, timeUnit.toMillis(delay))
 }
@@ -1374,6 +1741,9 @@ fun runDelayed(delay: Long, timeUnit: TimeUnit = MILLISECONDS, action: () -> Uni
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun runDelayedOnUiThread(delay: Long, timeUnit: TimeUnit = MILLISECONDS, action: () -> Unit) {
     ContextHandler.handler.postDelayed(action, timeUnit.toMillis(delay))
 }
@@ -1381,6 +1751,9 @@ fun runDelayedOnUiThread(delay: Long, timeUnit: TimeUnit = MILLISECONDS, action:
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 private object ContextHandler {
     val handler = Handler(Looper.getMainLooper())
     val mainThread = Looper.getMainLooper().thread
@@ -1389,26 +1762,41 @@ private object ContextHandler {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun <reified T : View> View.find(@IdRes id: Int) = findViewById(id) as T
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun <reified T : View> View.findOptional(@IdRes id: Int) = findViewById(id) as? T
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG) = snack(message, length) {}
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.snack(@StringRes messageRes: Int, length: Int = Snackbar.LENGTH_LONG) = snack(messageRes, length) {}
 ```
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun View.snack(message: String, @Duration length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
     val snack = Snackbar.make(this, message, length)
     snack.f()
@@ -1418,6 +1806,9 @@ inline fun View.snack(message: String, @Duration length: Int = Snackbar.LENGTH_L
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 inline fun View.snack(@StringRes messageRes: Int, @Duration length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
     val snack = Snackbar.make(this, messageRes, length)
     snack.f()
@@ -1427,6 +1818,9 @@ inline fun View.snack(@StringRes messageRes: Int, @Duration length: Int = Snackb
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Snackbar.action(text: String, @ColorRes color: Int? = null, listener: (View) -> Unit) {
     setAction(text, listener)
     color?.let { setActionTextColor(color) }
@@ -1435,6 +1829,9 @@ fun Snackbar.action(text: String, @ColorRes color: Int? = null, listener: (View)
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 tailrec fun <T : View> View.findParent(parentType: Class<T>): T {
     return if (parent.javaClass == parentType) parent as T else (parent as View).findParent(parentType)
 }
@@ -1443,8 +1840,9 @@ tailrec fun <T : View> View.findParent(parentType: Class<T>): T {
 
 ```kotlin
 /**
+ * Extension method to provide show keyboard for View.
  * https://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
- **/
+ */
 fun View.hideSoftKeyboard(): Boolean {
     try {
         val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -1457,6 +1855,9 @@ fun View.hideSoftKeyboard(): Boolean {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun Activity.getContentView(): ViewGroup {
     return this.findViewById(android.R.id.content) as ViewGroup
 }
@@ -1464,6 +1865,9 @@ fun Activity.getContentView(): ViewGroup {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun TextView.setColorOfSubstring(substring: String, color: Int) {
     try {
         val spannable = android.text.SpannableString(text)
@@ -1478,6 +1882,9 @@ fun TextView.setColorOfSubstring(substring: String, color: Int) {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun ViewGroup.getViewsByTag(tag: String): ArrayList<View> {
     val views = ArrayList<View>()
     val childCount = childCount
@@ -1499,6 +1906,9 @@ fun ViewGroup.getViewsByTag(tag: String): ArrayList<View> {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun ViewGroup.removeViewsByTag(tag: String) {
     for (i in 0..childCount - 1) {
         val child = getChildAt(i)
@@ -1515,6 +1925,9 @@ fun ViewGroup.removeViewsByTag(tag: String) {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun TextView.font(font: String) {
     typeface = Typeface.createFromAsset(context.assets, "fonts/$font.ttf")
 }
@@ -1522,6 +1935,9 @@ fun TextView.font(font: String) {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.visible(): View {
     if (visibility != View.VISIBLE) visibility = View.VISIBLE
     return this
@@ -1530,6 +1946,9 @@ fun View.visible(): View {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.isVisible(): Boolean {
     return visibility == View.VISIBLE
 }
@@ -1537,6 +1956,9 @@ fun View.isVisible(): Boolean {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.invisible() {
     if (visibility != View.INVISIBLE) visibility = View.INVISIBLE
 }
@@ -1544,6 +1966,9 @@ fun View.invisible() {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun View.gone() {
     if (visibility != View.GONE) visibility = View.GONE
 }
@@ -1551,6 +1976,9 @@ fun View.gone() {
 
 
 ```kotlin
+/**
+ * Extension method to provide show keyboard for View.
+ */
 fun ViewGroup.inflate(layoutRes: Int): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, false)
 }
