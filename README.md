@@ -7,6 +7,16 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/ravidsrk.svg?style=social)](https://twitter.com/ravidsrk)
 
 
+- [View](#view)
+- [Context](#context)
+- [Fragment](#fragment)
+- [Activity](#activity)
+- [ViewGroup](#viewgroup)
+- [TextView](#textview)
+- [String](#string)
+- [Other](#other)
+
+
 ## View
 
 ```kotlin
