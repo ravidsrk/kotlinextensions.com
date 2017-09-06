@@ -2,7 +2,7 @@
 
 > Curated list of Most commonly used Kotlin Extensions.
 
-:warning: Docs WIP
+### Extensions taken from https://github.com/VictorChow/KotlinAndroidLib
 
 ### Show some :heart:
 [![GitHub stars](https://img.shields.io/github/stars/ravidsrk/kotlinextensions.com.svg?style=social&label=Star)](https://github.com/ravidsrk/kotlinextensions.com) [![GitHub forks](https://img.shields.io/github/forks/ravidsrk/kotlinextensions.com.svg?style=social&label=Fork)](https://github.com/ravidsrk/kotlinextensions.com/fork) [![GitHub watchers](https://img.shields.io/github/watchers/ravidsrk/kotlinextensions.com.svg?style=social&label=Watch)](https://github.com/ravidsrk/kotlinextensions.com) [![GitHub followers](https://img.shields.io/github/followers/ravidsrk.svg?style=social&label=Follow)](https://github.com/ravidsrk/kotlinextensions.com) 
