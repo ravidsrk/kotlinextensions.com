@@ -2,7 +2,7 @@
 
 > Curated list of Most commonly used Kotlin Extensions.
 
-### Extensions taken from https://github.com/VictorChow/KotlinAndroidLib
+### Some extensions taken from https://github.com/VictorChow/KotlinAndroidLib
 
 - [View](#view)
 - [Context](#context)
@@ -371,7 +371,7 @@ fun View.animateHeightBy(byValue: Int, duration: Long = DURATION, interpolator: 
 /**
  * Extension method to provide show keyboard for View.
  */
-fun View.click(block: (View) -> Unit) = setOnClickListener { block(it) }
+fun <T : View> T.click(block: (T) -> Unit) = setOnClickListener { block(it as T) }
 ```
 
 
@@ -381,7 +381,7 @@ fun View.click(block: (View) -> Unit) = setOnClickListener { block(it) }
 /**
  * Extension method to provide show keyboard for View.
  */
-fun View.longClick(block: (View) -> Boolean) = setOnLongClickListener { block(it) }
+fun <T : View> T.longClick(block: (T) -> Boolean) = setOnLongClickListener { block(it as T) }
 ```
 
 
@@ -639,7 +639,7 @@ fun View.isVisible(): Boolean {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 
 ```kotlin
@@ -651,7 +651,7 @@ fun View.invisible() {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 
 ```kotlin
@@ -1102,7 +1102,7 @@ fun Context.rate(): Boolean = browse("market://details?id=$packageName") or brow
 fun Context.getLayoutInflater() = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1116,7 +1116,7 @@ fun Context.sms(phone: String?, body: String = "") {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1449,8 +1449,9 @@ fun <T : ViewDataBinding> ViewGroup.bind(layoutId: Int): T {
 }
 ```
 
-
 ## TextView
+
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 
 ```kotlin
@@ -1463,7 +1464,7 @@ fun TextView.underLine() {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1475,7 +1476,7 @@ fun TextView.deleteLine() {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1516,8 +1517,9 @@ fun TextView.font(font: String) {
 }
 ```
 
-
 ## String
+
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 
 ```kotlin
@@ -1527,7 +1529,7 @@ fun TextView.font(font: String) {
 fun String.toast(isShortToast: Boolean = true) = toast(this, isShortToast)
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1536,7 +1538,7 @@ fun String.toast(isShortToast: Boolean = true) = toast(this, isShortToast)
 fun String.md5() = encrypt(this, "MD5")
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1545,7 +1547,7 @@ fun String.md5() = encrypt(this, "MD5")
 fun String.sha1() = encrypt(this, "SHA-1")
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1557,7 +1559,7 @@ fun String.isPhone(): Boolean {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1569,7 +1571,7 @@ fun String.isEmail(): Boolean {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1581,7 +1583,7 @@ fun String.isNumeric(): Boolean {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1590,7 +1592,7 @@ fun String.isNumeric(): Boolean {
 fun String.equalsIgnoreCase(other: String) = this.toLowerCase().contentEquals(other.toLowerCase())
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1611,7 +1613,7 @@ private fun encrypt(string: String?, type: String): String {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1813,7 +1815,7 @@ fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) 
         ViewModelProviders.of(this, ViewModelFactory.getInstance(application)).get(viewModelClass)
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1823,7 +1825,7 @@ val EditText.value
     get() = text.toString()
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1836,7 +1838,7 @@ inline fun aboveApi(api: Int, included: Boolean = false, block: () -> Unit) {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1849,7 +1851,7 @@ inline fun belowApi(api: Int, included: Boolean = false, block: () -> Unit) {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1878,7 +1880,7 @@ fun Bitmap.toBase64(): String {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1898,7 +1900,7 @@ fun Bitmap.resize(w: Number, h: Number): Bitmap {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1916,7 +1918,7 @@ fun Bitmap.saveFile(path: String) {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1925,7 +1927,7 @@ fun Bitmap.saveFile(path: String) {
 fun findColor(@ColorRes resId: Int) = ContextCompat.getColor(Ext.ctx, resId)
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1934,7 +1936,7 @@ fun findColor(@ColorRes resId: Int) = ContextCompat.getColor(Ext.ctx, resId)
 fun findDrawable(@DrawableRes resId: Int): Drawable? = ContextCompat.getDrawable(Ext.ctx, resId)
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1943,7 +1945,7 @@ fun findDrawable(@DrawableRes resId: Int): Drawable? = ContextCompat.getDrawable
 fun findColorStateList(@ColorRes resId: Int): ColorStateList? = ContextCompat.getColorStateList(Ext.ctx, resId)
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1952,7 +1954,7 @@ fun findColorStateList(@ColorRes resId: Int): ColorStateList? = ContextCompat.ge
 fun inflate(@LayoutRes layoutId: Int, parent: ViewGroup?, attachToRoot: Boolean = false) = LayoutInflater.from(Ext.ctx).inflate(layoutId, parent, attachToRoot)!!
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1961,7 +1963,7 @@ fun inflate(@LayoutRes layoutId: Int, parent: ViewGroup?, attachToRoot: Boolean 
 fun inflate(@LayoutRes layoutId: Int) = inflate(layoutId, null)
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -1969,6 +1971,8 @@ fun inflate(@LayoutRes layoutId: Int) = inflate(layoutId, null)
  */
 fun isMainThread(): Boolean = Looper.myLooper() == Looper.getMainLooper()
 ```
+
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 
 ```kotlin
@@ -2007,7 +2011,7 @@ fun Long.constellation() = getData(this, DateExpr.CONSTELLATION)
 fun Int.isLeapYear() = (this % 4 == 0) && (this % 100 != 0) || (this % 400 == 0)
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -2017,7 +2021,7 @@ inline val connectivityManager: ConnectivityManager
     get() = Ext.ctx.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -2027,7 +2031,7 @@ inline val alarmManager: AlarmManager
     get() = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -2037,7 +2041,7 @@ inline val telephonyManager: TelephonyManager
     get() = context.getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -2047,7 +2051,7 @@ inline val activityManager: ActivityManager
     get() = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 
 ```kotlin
@@ -2058,7 +2062,7 @@ inline val notificationManager: NotificationManager
     get() = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -2069,7 +2073,7 @@ inline val appWidgetManager
     get() = context.getSystemService(Context.APPWIDGET_SERVICE) as AppWidgetManager
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -2079,7 +2083,7 @@ inline val inputMethodManager: InputMethodManager
     get() = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -2089,7 +2093,7 @@ inline val clipboardManager
     get() = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -2100,7 +2104,7 @@ inline val bluetoothManager: BluetoothManager
     get() = context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -2110,7 +2114,7 @@ inline val audioManager
     get() = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -2121,7 +2125,7 @@ inline val batteryManager
     get() = context.getSystemService(Context.BATTERY_SERVICE) as BatteryManager
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -2134,7 +2138,7 @@ fun spannableSize(text: String, textSize: Int, isDip: Boolean, start: Int, end: 
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
@@ -2147,7 +2151,7 @@ fun spannableBold(text: String, start: Int, end: Int): SpannableString {
 }
 ```
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 
 ```kotlin
 /**
