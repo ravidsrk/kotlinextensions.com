@@ -2222,3 +2222,9 @@ fun Snackbar.action(text: String, @ColorRes color: Int? = null, listener: (View)
 }
 ```
 
+```kotlin
+/**
+ * Extension method to get the TAG name for all object
+ */
+fun <T : Any> T.TAG() = this::class.simpleName
+```
