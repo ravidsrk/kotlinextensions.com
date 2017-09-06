@@ -167,7 +167,7 @@ fun View.setupSnackbar(lifecycleOwner: LifecycleOwner,
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -177,7 +177,7 @@ fun View.setPaddingLeft(value: Int) = setPadding(value, paddingTop, paddingRight
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -187,7 +187,7 @@ fun View.setPaddingRight(value: Int) = setPadding(paddingLeft, paddingTop, value
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -197,7 +197,7 @@ fun View.setPaddingTop(value: Int) = setPaddingRelative(paddingStart, value, pad
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -207,7 +207,7 @@ fun View.setPaddingBottom(value: Int) = setPaddingRelative(paddingStart, padding
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -217,7 +217,7 @@ fun View.setPaddingStart(value: Int) = setPaddingRelative(value, paddingTop, pad
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -227,7 +227,7 @@ fun View.setPaddingEnd(value: Int) = setPaddingRelative(paddingStart, paddingTop
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -237,7 +237,7 @@ fun View.setPaddingHorizontal(value: Int) = setPaddingRelative(value, paddingTop
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -247,7 +247,7 @@ fun View.setPaddingVertical(value: Int) = setPaddingRelative(paddingStart, value
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -263,7 +263,7 @@ fun View.setHeight(value: Int) {
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -279,7 +279,7 @@ fun View.setWidth(value: Int) {
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -296,7 +296,7 @@ fun View.resize(width: Int, height: Int) {
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -324,7 +324,7 @@ fun View.animateWidth(toValue: Int, duration: Long = DURATION, interpolator: Int
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -335,7 +335,7 @@ fun View.animateWidthBy(byValue: Int, duration: Long = DURATION, interpolator: I
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -360,7 +360,7 @@ fun View.animateHeight(toValue: Int, duration: Long = DURATION, interpolator: In
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -371,7 +371,7 @@ fun View.animateHeightBy(byValue: Int, duration: Long = DURATION, interpolator: 
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -381,7 +381,7 @@ fun View.click(block: (View) -> Unit) = setOnClickListener { block(it) }
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -391,7 +391,7 @@ fun View.longClick(block: (View) -> Boolean) = setOnLongClickListener { block(it
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -405,7 +405,7 @@ fun View.visiable() {
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -419,7 +419,7 @@ inline fun View.visiableIf(block: () -> Boolean) {
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -433,7 +433,7 @@ fun View.invisiable() {
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -447,7 +447,7 @@ inline fun View.invisiableIf(block: () -> Boolean) {
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -461,7 +461,7 @@ fun View.gone() {
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -475,7 +475,7 @@ inline fun View.goneIf(block: () -> Boolean) {
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -496,7 +496,7 @@ fun View.animateX(toValue: Float, duration: Long = DURATION, interpolator: Inter
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -507,7 +507,7 @@ fun View.animateXBy(toValue: Float, duration: Long = DURATION, interpolator: Int
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -528,7 +528,7 @@ fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Inter
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
@@ -539,7 +539,7 @@ fun View.animateYBy(toValue: Float, duration: Long = DURATION, interpolator: Int
 
 
 
-
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
  * Extension method to provide show keyboard for View.
