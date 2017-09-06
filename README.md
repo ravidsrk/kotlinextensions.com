@@ -1517,6 +1517,17 @@ fun TextView.font(font: String) {
 }
 ```
 
+
+
+```kotlin
+/**
+ * Extension method to set a drawable to the left of a TextView.
+ */
+fun TextView.setDrawableLeft(drawable: Int) {
+    this.setCompoundDrawablesWithIntrinsicBounds(drawable, 0, 0, 0)
+}
+```
+
 ## String
 
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
