@@ -133,9 +133,8 @@ fun View.showSnackbar(snackbarText: String, timeLength: Int) {
 
 ```kotlin
 /**
- * Extension method to get ClickableSpan.
- * e.g.
- * val loginLink = getClickableSpan(context.getColorCompat(R.color.colorAccent), { })
+ * Extension method to get update padding of view.
+ * 
  */
 fun View.updatePadding(paddingStart: Int = getPaddingStart(),
         paddingTop: Int = getPaddingTop(),
@@ -1758,9 +1757,7 @@ fun getClickableSpan(color: Int, action: (view: View) -> Unit): ClickableSpan {
 
 ```kotlin
 /**
- * Extension method to get ClickableSpan.
- * e.g.
- * val loginLink = getClickableSpan(context.getColorCompat(R.color.colorAccent), { })
+ * Extension method to load imageView from url.
  */
 fun ImageView.loadFromUrl(imageUrl: String) {
     Glide.with(this).load(imageUrl).into(this)
@@ -1771,9 +1768,7 @@ fun ImageView.loadFromUrl(imageUrl: String) {
 
 ```kotlin
 /**
- * Extension method to get ClickableSpan.
- * e.g.
- * val loginLink = getClickableSpan(context.getColorCompat(R.color.colorAccent), { })
+ * Extension method to load icon from url.
  */
 fun MenuItem.loadIconFromUrl(context: Context, imageUrl: String) {
     Glide.with(context).asBitmap()
@@ -1792,9 +1787,7 @@ fun MenuItem.loadIconFromUrl(context: Context, imageUrl: String) {
 
 ```kotlin
 /**
- * Extension method to get ClickableSpan.
- * e.g.
- * val loginLink = getClickableSpan(context.getColorCompat(R.color.colorAccent), { })
+ * Extension method to write preferences.
  */
 inline fun SharedPreferences.edit(preferApply: Boolean = false, f: SharedPreferences.Editor.() -> Unit) {
     val editor = edit()
