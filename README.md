@@ -133,7 +133,7 @@ fun View.showSnackbar(snackbarText: String, timeLength: Int) {
 
 ```kotlin
 /**
- * Extension method to get update padding of view.
+ * Extension method to update padding of view.
  * 
  */
 fun View.updatePadding(paddingStart: Int = getPaddingStart(),
