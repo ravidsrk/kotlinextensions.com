@@ -2,8 +2,6 @@
 
 > Curated list of Most commonly used Kotlin Extensions.
 
-### Some extensions taken from https://github.com/VictorChow/KotlinAndroidLib
-
 - [View](#view)
 - [Context](#context)
 - [Fragment](#fragment)
@@ -12,7 +10,6 @@
 - [TextView](#textview)
 - [String](#string)
 - [Other](#other)
-
 
 ## View
 
