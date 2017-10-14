@@ -27,7 +27,7 @@ fun View.getString(stringResId: Int): String = resources.getString(stringResId)
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to show keyboard for a View.
  */
 fun View.showKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -95,7 +95,7 @@ fun <T : ViewDataBinding> View.bind() = DataBindingUtil.bind<T>(this) as T
 
 ```kotlin
 /**
- * Extension method to provide hide keyboard for [View].
+ * Extension method to hide keyboard for a View.
  */
 fun View.hideKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -161,7 +161,7 @@ fun View.setupSnackbar(lifecycleOwner: LifecycleOwner,
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's left padding.
  */
 fun View.setPaddingLeft(value: Int) = setPadding(value, paddingTop, paddingRight, paddingBottom)
 ```
@@ -171,7 +171,7 @@ fun View.setPaddingLeft(value: Int) = setPadding(value, paddingTop, paddingRight
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's right padding.
  */
 fun View.setPaddingRight(value: Int) = setPadding(paddingLeft, paddingTop, value, paddingBottom)
 ```
@@ -181,7 +181,7 @@ fun View.setPaddingRight(value: Int) = setPadding(paddingLeft, paddingTop, value
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's top padding.
  */
 fun View.setPaddingTop(value: Int) = setPaddingRelative(paddingStart, value, paddingEnd, paddingBottom)
 ```
@@ -191,7 +191,7 @@ fun View.setPaddingTop(value: Int) = setPaddingRelative(paddingStart, value, pad
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's bottom padding.
  */
 fun View.setPaddingBottom(value: Int) = setPaddingRelative(paddingStart, paddingTop, paddingEnd, value)
 ```
@@ -201,7 +201,7 @@ fun View.setPaddingBottom(value: Int) = setPaddingRelative(paddingStart, padding
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's start padding.
  */
 fun View.setPaddingStart(value: Int) = setPaddingRelative(value, paddingTop, paddingEnd, paddingBottom)
 ```
@@ -211,7 +211,7 @@ fun View.setPaddingStart(value: Int) = setPaddingRelative(value, paddingTop, pad
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's end padding.
  */
 fun View.setPaddingEnd(value: Int) = setPaddingRelative(paddingStart, paddingTop, value, paddingBottom)
 ```
@@ -221,7 +221,7 @@ fun View.setPaddingEnd(value: Int) = setPaddingRelative(paddingStart, paddingTop
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's horizontal (left + right) padding.
  */
 fun View.setPaddingHorizontal(value: Int) = setPaddingRelative(value, paddingTop, value, paddingBottom)
 ```
@@ -231,7 +231,7 @@ fun View.setPaddingHorizontal(value: Int) = setPaddingRelative(value, paddingTop
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's vertical (top + bottom) padding.
  */
 fun View.setPaddingVertical(value: Int) = setPaddingRelative(paddingStart, value, paddingEnd, value)
 ```
@@ -241,7 +241,7 @@ fun View.setPaddingVertical(value: Int) = setPaddingRelative(paddingStart, value
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's height.
  */
 fun View.setHeight(value: Int) {
     val lp = layoutParams
@@ -257,7 +257,7 @@ fun View.setHeight(value: Int) {
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's width.
  */
 fun View.setWidth(value: Int) {
     val lp = layoutParams
@@ -273,7 +273,7 @@ fun View.setWidth(value: Int) {
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to resize View with height & width.
  */
 fun View.resize(width: Int, height: Int) {
     val lp = layoutParams
@@ -290,7 +290,7 @@ fun View.resize(width: Int, height: Int) {
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to animate ViewGroup's childs width by value.
  */
 val ViewGroup.children: List<View>
     get() = (0 until childCount).map { getChildAt(it) }
@@ -318,7 +318,7 @@ fun View.animateWidth(toValue: Int, duration: Long = DURATION, interpolator: Int
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to animate View's width by value.
  */
 fun View.animateWidthBy(byValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateWidth(width + byValue, duration, interpolator)
@@ -329,7 +329,7 @@ fun View.animateWidthBy(byValue: Int, duration: Long = DURATION, interpolator: I
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to animate ViewGroup's childs by height by value.
  */
 fun View.animateHeight(toValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
     if (toValue == height || layoutParams == null) {
@@ -354,7 +354,7 @@ fun View.animateHeight(toValue: Int, duration: Long = DURATION, interpolator: In
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to animate View's width by value.
  */
 fun View.animateHeightBy(byValue: Int, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateHeight(height + byValue, duration, interpolator)
@@ -365,7 +365,7 @@ fun View.animateHeightBy(byValue: Int, duration: Long = DURATION, interpolator: 
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set OnClickListener on a view.
  */
 fun <T : View> T.click(block: (T) -> Unit) = setOnClickListener { block(it as T) }
 ```
@@ -375,7 +375,7 @@ fun <T : View> T.click(block: (T) -> Unit) = setOnClickListener { block(it as T)
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set OnLongClickListener on a view.
  */
 fun <T : View> T.longClick(block: (T) -> Boolean) = setOnLongClickListener { block(it as T) }
 ```
@@ -385,7 +385,7 @@ fun <T : View> T.longClick(block: (T) -> Boolean) = setOnLongClickListener { blo
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set visibility of a view to VISIBLE.
  */
 fun View.visiable() {
     if (visibility != View.VISIBLE) {
@@ -399,7 +399,7 @@ fun View.visiable() {
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set visibility of a view to VISIBLE.
  */
 inline fun View.visiableIf(block: () -> Boolean) {
     if (visibility != View.VISIBLE && block()) {
@@ -413,7 +413,7 @@ inline fun View.visiableIf(block: () -> Boolean) {
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set invisibility of a view to INVISIBLE.
  */
 fun View.invisiable() {
     if (visibility != View.INVISIBLE) {
@@ -427,7 +427,7 @@ fun View.invisiable() {
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set visibility of a view to INVISIBLE.
  */
 inline fun View.invisiableIf(block: () -> Boolean) {
     if (visibility != View.INVISIBLE && block()) {
@@ -441,7 +441,7 @@ inline fun View.invisiableIf(block: () -> Boolean) {
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set visibility of a view to GONE.
  */
 fun View.gone() {
     if (visibility != View.GONE) {
@@ -455,7 +455,7 @@ fun View.gone() {
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set visibility of a view to GONE.
  */
 inline fun View.goneIf(block: () -> Boolean) {
     if (visibility != View.GONE && block()) {
@@ -469,7 +469,7 @@ inline fun View.goneIf(block: () -> Boolean) {
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to animate a view's width.
  */
 fun View.animateX(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
     if (toValue == translationX) {
@@ -490,7 +490,7 @@ fun View.animateX(toValue: Float, duration: Long = DURATION, interpolator: Inter
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to animate a view's width by a value.
  */
 fun View.animateXBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateX(translationX + toValue, duration, interpolator)
@@ -501,7 +501,7 @@ fun View.animateXBy(toValue: Float, duration: Long = DURATION, interpolator: Int
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to animate a view's height.
  */
 fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
     if (toValue == translationY) {
@@ -522,7 +522,7 @@ fun View.animateY(toValue: Float, duration: Long = DURATION, interpolator: Inter
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to animate a view's height by a value.
  */
 fun View.animateYBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateY(translationY + toValue, duration, interpolator)
@@ -533,7 +533,7 @@ fun View.animateYBy(toValue: Float, duration: Long = DURATION, interpolator: Int
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to get a view as bitmap.
  */
 fun View.getBitmap(): Bitmap {
     val bmp = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
@@ -549,7 +549,7 @@ fun View.getBitmap(): Bitmap {
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to toast a message as a string using snackbar
  */
 fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG) = snack(message, length) {}
 ```
@@ -559,7 +559,7 @@ fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG) = snack(mess
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to toast a message as a string resource id using snackbar
  */
 fun View.snack(@StringRes messageRes: Int, length: Int = Snackbar.LENGTH_LONG) = snack(messageRes, length) {}
 ```
@@ -569,7 +569,7 @@ fun View.snack(@StringRes messageRes: Int, length: Int = Snackbar.LENGTH_LONG) =
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to toast a message as a string using snackbar
  */
 inline fun View.snack(message: String, @Duration length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
     val snack = Snackbar.make(this, message, length)
@@ -583,7 +583,7 @@ inline fun View.snack(message: String, @Duration length: Int = Snackbar.LENGTH_L
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to toast a message as a string resource id using snackbar
  */
 inline fun View.snack(@StringRes messageRes: Int, @Duration length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
     val snack = Snackbar.make(this, messageRes, length)
@@ -615,7 +615,7 @@ fun View.hideSoftKeyboard(): Boolean {
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's visiblity=VISIBLE.
  */
 fun View.visible(): View {
     if (visibility != View.VISIBLE) visibility = View.VISIBLE
@@ -628,7 +628,7 @@ fun View.visible(): View {
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to get View's visiblity==VISIBLE.
  */
 fun View.isVisible(): Boolean {
     return visibility == View.VISIBLE
@@ -640,7 +640,7 @@ fun View.isVisible(): Boolean {
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's visiblity=INVISIBLE.
  */
 fun View.invisible() {
     if (visibility != View.INVISIBLE) visibility = View.INVISIBLE
@@ -652,7 +652,7 @@ fun View.invisible() {
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to set View's visiblity=GONE.
  */
 fun View.gone() {
     if (visibility != View.GONE) visibility = View.GONE
@@ -664,7 +664,7 @@ fun View.gone() {
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to find a view's parent.
  */
 tailrec fun <T : View> View.findParent(parentType: Class<T>): T {
     return if (parent.javaClass == parentType) parent as T else (parent as View).findParent(parentType)
@@ -676,7 +676,7 @@ tailrec fun <T : View> View.findParent(parentType: Class<T>): T {
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to find a view by id.
  */
 inline fun <reified T : View> View.find(@IdRes id: Int) = findViewById(id) as T
 ```
@@ -686,7 +686,7 @@ inline fun <reified T : View> View.find(@IdRes id: Int) = findViewById(id) as T
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to find a view by id if it is not null.
  */
 inline fun <reified T : View> View.findOptional(@IdRes id: Int) = findViewById(id) as? T
 ```
@@ -708,7 +708,7 @@ fun Context.getColorCompat(color: Int) = ContextCompat.getColor(this, color)
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to find a device width in pixels
  */
 inline val Context.displayWidth: Int
     get() = resources.displayMetrics.widthPixels
@@ -719,7 +719,7 @@ inline val Context.displayWidth: Int
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to find a device height in pixels
  */
 inline val Context.displayHeight: Int
     get() = resources.displayMetrics.heightPixels
@@ -730,7 +730,7 @@ inline val Context.displayHeight: Int
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to get displayMetrics in Context.displayMetricks
  */
 inline val Context.displayMetricks: DisplayMetrics
     get() = resources.displayMetrics
@@ -741,7 +741,7 @@ inline val Context.displayMetricks: DisplayMetrics
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to get LayoutInflater
  */
 inline val Context.inflater: LayoutInflater
     get() = LayoutInflater.from(this)
@@ -752,7 +752,7 @@ inline val Context.inflater: LayoutInflater
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to get a new Intent for an Activity class
  */
 inline fun <reified T : Any> Context.intent() = Intent(this, T::class.java)
 ```
@@ -762,7 +762,7 @@ inline fun <reified T : Any> Context.intent() = Intent(this, T::class.java)
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to get a new Intent for an Activity class
  */
 inline fun <reified T : Any> Context.intent(body: Intent.() -> Unit): Intent {
     val intent = Intent(this, T::class.java)
@@ -874,7 +874,7 @@ fun Context.getDrawable(@DrawableRes id: Int) = ContextCompat.getDrawable(this, 
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to inflate a layout
  */
 fun Context.inflateLayout(@LayoutRes layoutId: Int, parent: ViewGroup? = null, attachToRoot: Boolean = false): View
         = LayoutInflater.from(this).inflate(layoutId, parent, attachToRoot)
@@ -1280,7 +1280,7 @@ fun Fragment.rate() = activity.rate()
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
+ * Extension method to rate in playstore for SupportFragment.
  */
 fun SupportFragment.rate() = activity.rate()
 ```
