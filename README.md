@@ -27,7 +27,7 @@ fun View.getString(stringResId: Int): String = resources.getString(stringResId)
 
 ```kotlin
 /**
- * Extension method to show keyboard for a View.
+ * Extension method to show a keyboard for View.
  */
 fun View.showKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -36,6 +36,20 @@ fun View.showKeyboard() {
 }
 ```
 
+
+```kotlin
+/**
+ * Try to hide the keyboard and returns wether it workd
+ * https://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
+ */
+fun View.hideKeyboard(): Boolean {
+    try {
+        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        return inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+    } catch (ignored: RuntimeException) { }
+        return false
+    }
+```
 
 
 
@@ -90,18 +104,6 @@ fun View.doOnLayout(onLayout: (View) -> Boolean) {
 fun <T : ViewDataBinding> View.bind() = DataBindingUtil.bind<T>(this) as T
 ```
 
-
-
-
-```kotlin
-/**
- * Extension method to hide keyboard for a View.
- */
-fun View.hideKeyboard() {
-    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-    imm.hideSoftInputFromWindow(windowToken, 0)
-}
-```
 
 
 
@@ -221,7 +223,7 @@ fun View.setPaddingEnd(value: Int) = setPaddingRelative(paddingStart, paddingTop
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to set View's horizontal (left + right) padding.
+ * Extension method to set View's horizontal padding.
  */
 fun View.setPaddingHorizontal(value: Int) = setPaddingRelative(value, paddingTop, value, paddingBottom)
 ```
@@ -231,7 +233,7 @@ fun View.setPaddingHorizontal(value: Int) = setPaddingRelative(value, paddingTop
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to set View's vertical (top + bottom) padding.
+ * Extension method to set View's vertical padding.
  */
 fun View.setPaddingVertical(value: Int) = setPaddingRelative(paddingStart, value, paddingEnd, value)
 ```
@@ -290,7 +292,7 @@ fun View.resize(width: Int, height: Int) {
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to animate ViewGroup's childs width by value.
+ * Extension method to access the view's children as a list
  */
 val ViewGroup.children: List<View>
     get() = (0 until childCount).map { getChildAt(it) }
@@ -313,6 +315,119 @@ fun View.animateWidth(toValue: Int, duration: Long = DURATION, interpolator: Int
 }
 ```
 
+
+
+
+
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
+```kotlin
+/**
+ * Set an onclick listener
+ */
+fun <T : View> T.click(block: (T) -> Unit) = setOnClickListener { block(it as T) }
+```
+
+
+
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
+```kotlin
+/**
+ * Extension method to set OnClickListener on a view.
+ */
+fun <T : View> T.longClick(block: (T) -> Boolean) = setOnLongClickListener { block(it as T) }
+```
+
+
+
+```kotlin
+/**
+ * Show the view  (visibility = View.VISIBLE)
+ */
+fun View.show() : View {
+    if (visibility != View.VISIBLE) {
+        visibility = View.VISIBLE
+    }
+    return this
+}
+```
+
+
+
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
+```kotlin
+/**
+ * Show the view if [condition] returns true
+ * (visibility = View.VISIBLE)
+ */
+inline fun View.showIf(condition: () -> Boolean) : View {
+    if (visibility != View.VISIBLE && block()) {
+        visibility = View.VISIBLE
+    }
+    return this
+}
+```
+
+
+
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
+```kotlin
+/**
+ * Hide the view. (visibility = View.INVISIBLE)
+ */
+fun View.hide() : View {
+    if (visibility != View.INVISIBLE) {
+        visibility = View.INVISIBLE
+    }
+    return this
+}
+```
+
+
+
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
+```kotlin
+/**
+ * Hide the view if [predicate] returns true
+ * (visibility = View.INVISIBLE)
+ */
+inline fun View.hideIf(predicate: () -> Boolean) : View {
+    if (visibility != View.INVISIBLE && block()) {
+        visibility = View.INVISIBLE
+    }
+    return this
+}
+```
+
+
+
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
+```kotlin
+/**
+ * Remove the view (visibility = View.GONE)
+ */
+fun View.remove() : View {
+    if (visibility != View.GONE) {
+        visibility = View.GONE
+    }
+    return this
+}
+```
+
+
+
+[Source](https://github.com/VictorChow/KotlinAndroidLib)
+```kotlin
+/**
+ * Remove the view if [predicate] returns true
+ * (visibility = View.GONE)
+ */
+inline fun View.removeIf(predicate: () -> Boolean) : View {
+    if (visibility != View.GONE && block()) {
+        visibility = View.GONE
+    }
+    return this
+}
+```
 
 
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
@@ -365,111 +480,7 @@ fun View.animateHeightBy(byValue: Int, duration: Long = DURATION, interpolator: 
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to set OnClickListener on a view.
- */
-fun <T : View> T.click(block: (T) -> Unit) = setOnClickListener { block(it as T) }
-```
-
-
-
-[Source](https://github.com/VictorChow/KotlinAndroidLib)
-```kotlin
-/**
- * Extension method to set OnLongClickListener on a view.
- */
-fun <T : View> T.longClick(block: (T) -> Boolean) = setOnLongClickListener { block(it as T) }
-```
-
-
-
-[Source](https://github.com/VictorChow/KotlinAndroidLib)
-```kotlin
-/**
- * Extension method to set visibility of a view to VISIBLE.
- */
-fun View.visiable() {
-    if (visibility != View.VISIBLE) {
-        visibility = View.VISIBLE
-    }
-}
-```
-
-
-
-[Source](https://github.com/VictorChow/KotlinAndroidLib)
-```kotlin
-/**
- * Extension method to set visibility of a view to VISIBLE.
- */
-inline fun View.visiableIf(block: () -> Boolean) {
-    if (visibility != View.VISIBLE && block()) {
-        visibility = View.VISIBLE
-    }
-}
-```
-
-
-
-[Source](https://github.com/VictorChow/KotlinAndroidLib)
-```kotlin
-/**
- * Extension method to set invisibility of a view to INVISIBLE.
- */
-fun View.invisiable() {
-    if (visibility != View.INVISIBLE) {
-        visibility = View.INVISIBLE
-    }
-}
-```
-
-
-
-[Source](https://github.com/VictorChow/KotlinAndroidLib)
-```kotlin
-/**
- * Extension method to set visibility of a view to INVISIBLE.
- */
-inline fun View.invisiableIf(block: () -> Boolean) {
-    if (visibility != View.INVISIBLE && block()) {
-        visibility = View.INVISIBLE
-    }
-}
-```
-
-
-
-[Source](https://github.com/VictorChow/KotlinAndroidLib)
-```kotlin
-/**
- * Extension method to set visibility of a view to GONE.
- */
-fun View.gone() {
-    if (visibility != View.GONE) {
-        visibility = View.GONE
-    }
-}
-```
-
-
-
-[Source](https://github.com/VictorChow/KotlinAndroidLib)
-```kotlin
-/**
- * Extension method to set visibility of a view to GONE.
- */
-inline fun View.goneIf(block: () -> Boolean) {
-    if (visibility != View.GONE && block()) {
-        visibility = View.GONE
-    }
-}
-```
-
-
-
-[Source](https://github.com/VictorChow/KotlinAndroidLib)
-```kotlin
-/**
- * Extension method to animate a view's width.
+ * Animate the view
  */
 fun View.animateX(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR): AnimatePropsWrapper {
     if (toValue == translationX) {
@@ -490,7 +501,7 @@ fun View.animateX(toValue: Float, duration: Long = DURATION, interpolator: Inter
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
 ```kotlin
 /**
- * Extension method to animate a view's width by a value.
+ * Animate the view
  */
 fun View.animateXBy(toValue: Float, duration: Long = DURATION, interpolator: Interpolator = INTERPOLATOR)
         = animateX(translationX + toValue, duration, interpolator)
@@ -549,7 +560,7 @@ fun View.getBitmap(): Bitmap {
 
 ```kotlin
 /**
- * Extension method to toast a message as a string using snackbar
+ * Show a snackbar with [message]
  */
 fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG) = snack(message, length) {}
 ```
@@ -559,7 +570,7 @@ fun View.snack(message: String, length: Int = Snackbar.LENGTH_LONG) = snack(mess
 
 ```kotlin
 /**
- * Extension method to toast a message as a string resource id using snackbar
+ * Show a snackbar with [messageRes]
  */
 fun View.snack(@StringRes messageRes: Int, length: Int = Snackbar.LENGTH_LONG) = snack(messageRes, length) {}
 ```
@@ -569,7 +580,7 @@ fun View.snack(@StringRes messageRes: Int, length: Int = Snackbar.LENGTH_LONG) =
 
 ```kotlin
 /**
- * Extension method to toast a message as a string using snackbar
+ * Show a snackbar with [message], execute [f] and show it
  */
 inline fun View.snack(message: String, @Duration length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
     val snack = Snackbar.make(this, message, length)
@@ -583,7 +594,7 @@ inline fun View.snack(message: String, @Duration length: Int = Snackbar.LENGTH_L
 
 ```kotlin
 /**
- * Extension method to toast a message as a string resource id using snackbar
+ * Show a snackbar with [messageRes], execute [f] and show it
  */
 inline fun View.snack(@StringRes messageRes: Int, @Duration length: Int = Snackbar.LENGTH_LONG, f: Snackbar.() -> Unit) {
     val snack = Snackbar.make(this, messageRes, length)
@@ -597,74 +608,7 @@ inline fun View.snack(@StringRes messageRes: Int, @Duration length: Int = Snackb
 
 ```kotlin
 /**
- * Extension method to provide show keyboard for View.
- * https://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
- */
-fun View.hideSoftKeyboard(): Boolean {
-    try {
-        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        return inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
-    } catch (ignored: RuntimeException) { }
-
-    return false
-}
-```
-
-
-
-
-```kotlin
-/**
- * Extension method to set View's visiblity=VISIBLE.
- */
-fun View.visible(): View {
-    if (visibility != View.VISIBLE) visibility = View.VISIBLE
-    return this
-}
-```
-
-
-
-
-```kotlin
-/**
- * Extension method to get View's visiblity==VISIBLE.
- */
-fun View.isVisible(): Boolean {
-    return visibility == View.VISIBLE
-}
-```
-
-[Source](https://github.com/VictorChow/KotlinAndroidLib)
-
-
-```kotlin
-/**
- * Extension method to set View's visiblity=INVISIBLE.
- */
-fun View.invisible() {
-    if (visibility != View.INVISIBLE) visibility = View.INVISIBLE
-}
-```
-
-[Source](https://github.com/VictorChow/KotlinAndroidLib)
-
-
-```kotlin
-/**
- * Extension method to set View's visiblity=GONE.
- */
-fun View.gone() {
-    if (visibility != View.GONE) visibility = View.GONE
-}
-```
-
-
-
-
-```kotlin
-/**
- * Extension method to find a view's parent.
+ * Find a parent of type [parentType], assuming it exists
  */
 tailrec fun <T : View> View.findParent(parentType: Class<T>): T {
     return if (parent.javaClass == parentType) parent as T else (parent as View).findParent(parentType)
@@ -676,9 +620,9 @@ tailrec fun <T : View> View.findParent(parentType: Class<T>): T {
 
 ```kotlin
 /**
- * Extension method to find a view by id.
+ * Like findViewById but with type interference, assume the view exists
  */
-inline fun <reified T : View> View.find(@IdRes id: Int) = findViewById(id) as T
+inline fun <reified T : View> View.find(@IdRes id: Int) : T = findViewById(id) as T
 ```
 
 
@@ -686,9 +630,9 @@ inline fun <reified T : View> View.find(@IdRes id: Int) = findViewById(id) as T
 
 ```kotlin
 /**
- * Extension method to find a view by id if it is not null.
+ *  Like findViewById but with type interference, or null if not found
  */
-inline fun <reified T : View> View.findOptional(@IdRes id: Int) = findViewById(id) as? T
+inline fun <reified T : View> View.findOptional(@IdRes id: Int) : T? = findViewById(id) as? T
 ```
 
 
@@ -762,7 +706,7 @@ inline fun <reified T : Any> Context.intent() = Intent(this, T::class.java)
 
 ```kotlin
 /**
- * Extension method to get a new Intent for an Activity class
+ * Create an intent for [T] and apply a lambda on it
  */
 inline fun <reified T : Any> Context.intent(body: Intent.() -> Unit): Intent {
     val intent = Intent(this, T::class.java)
@@ -874,7 +818,7 @@ fun Context.getDrawable(@DrawableRes id: Int) = ContextCompat.getDrawable(this, 
 
 ```kotlin
 /**
- * Extension method to inflate a layout
+ * InflateLayout
  */
 fun Context.inflateLayout(@LayoutRes layoutId: Int, parent: ViewGroup? = null, attachToRoot: Boolean = false): View
         = LayoutInflater.from(this).inflate(layoutId, parent, attachToRoot)
