@@ -1661,7 +1661,7 @@ fun Editable.replaceAllIgnoreFilters(newValue: String) {
  * Extension method to get Date for String with specified format.
  */
 fun String.dateInFormat(format: String): Date? {
-    val dateFormat = SimpleDateFormat(format, Locale.US)
+    val dateFormat = SimpleDateFormat(format, Locale.getDefault())
     var parsedDate: Date? = null
     try {
         parsedDate = dateFormat.parse(this)
@@ -1931,7 +1931,7 @@ private enum class DateExpr {
     CONSTELLATION
 }
 
-fun Long.date(pattern: String = "yyyy-MM-dd HH:mm:ss"): String? = SimpleDateFormat(pattern, Locale.CHINA).format(this)
+fun Long.date(pattern: String = "yyyy-MM-dd HH:mm:ss"): String? = SimpleDateFormat(pattern,  Locale.getDefault()).format(this)
 
 fun Long.year() = getData(this, DateExpr.YEAR)
 
