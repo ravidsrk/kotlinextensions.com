@@ -39,7 +39,7 @@ fun View.showKeyboard() {
 
 ```kotlin
 /**
- * Try to hide the keyboard and returns wether it workd
+ * Try to hide the keyboard and returns whether it worked
  * https://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
  */
 fun View.hideKeyboard(): Boolean {
