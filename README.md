@@ -430,7 +430,25 @@ inline fun View.removeIf(predicate: () -> Boolean) : View {
 ```
 
 
+
+```kotlin
+/**
+ * Toggle a view's visibility
+ */
+fun View.toggleVisibility() : View {
+  	if (visibility == View.VISIBLE) {
+    	visibility = View.INVISIBLE
+  	} else {
+    	visibility = View.INVISIBLE
+  	}
+  	return this
+}
+```
+
+
+
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
+
 ```kotlin
 /**
  * Extension method to animate View's width by value.
