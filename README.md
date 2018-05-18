@@ -436,12 +436,12 @@ inline fun View.removeIf(predicate: () -> Boolean) : View {
  * Toggle a view's visibility
  */
 fun View.toggleVisibility() : View {
-  	if (visibility == View.VISIBLE) {
-    	visibility = View.INVISIBLE
-  	} else {
-    	visibility = View.INVISIBLE
-  	}
-  	return this
+    if (visibility == View.VISIBLE) {
+        visibility = View.INVISIBLE
+    } else {
+        visibility = View.INVISIBLE
+    }
+    return this
 }
 ```
 
