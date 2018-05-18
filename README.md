@@ -448,7 +448,6 @@ fun View.toggleVisibility() : View {
 
 
 [Source](https://github.com/VictorChow/KotlinAndroidLib)
-
 ```kotlin
 /**
  * Extension method to animate View's width by value.
