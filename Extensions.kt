@@ -157,6 +157,23 @@ fun String.dateInFormat(format: String): Date? {
 }
 
 /**
+ * Convert a given date to milliseconds
+ */
+fun Date.toMillis() : Long {
+    val calendar = Calendar.getInstance()
+    calendar.time = this
+    return calendar.timeInMillis
+}
+
+/**
+ * Checks if dates are same
+ */
+fun Date.isSame(to : Date) : Boolean {
+    val sdf = SimpleDateFormat("yyyMMdd", Locale.getDefault())
+    return sdf.format(this) == sdf.format(to)
+}
+
+/**
  * Extension method to get ClickableSpan.
  * e.g.
  * val loginLink = getClickableSpan(context.getColorCompat(R.color.colorAccent), { })
