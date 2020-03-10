@@ -1083,6 +1083,15 @@ fun Context.dial(tel: String?) = startActivity(Intent(Intent.ACTION_DIAL, Uri.pa
 ```
 
 
+
+```kotlin
+/**
+ * Extension method to get theme for Context.
+ */
+fun Context.isDarkTheme(): Boolean 
+        = resources.configuration.uiMode.and(Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+```
+
 ## Fragment
 
 
