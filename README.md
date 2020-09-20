@@ -1272,6 +1272,30 @@ fun Fragment.hideSoftKeyboard() {
 
 ```kotlin
 /**
+ * Extension method to set Status Bar Color and Status Bar Icon Color Type(dark/light)
+ */
+enum class StatusIconColorType {
+    Dark, Light
+}
+fun Activity.setStatusBarColor(color: Int, iconColorType: StatusIconColorType = Light) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        this.window.apply {
+            clearFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+            statusBarColor = color
+            decorView.systemUiVisibility = when (iconColorType) {
+                Dark -> View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                Light -> 0
+            }
+        }
+    } else
+        this.window.statusBarColor = color
+}
+```
+
+
+
+```kotlin
+/**
  * Extension method to provide hide keyboard for [Activity].
  */
 fun Activity.hideSoftKeyboard() {
