@@ -27,7 +27,7 @@ fun View.getString(stringResId: Int): String = resources.getString(stringResId)
 
 ```kotlin
 /**
- * Extension method to show a keyboard for View.
+ * Extension method to show a keyboard for View.(Coomented out)
  */
 fun View.showKeyboard() {
     val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
